@@ -1,5 +1,7 @@
 package g52196.stratego.model;
 
+import java.util.Objects;
+
 /**
  * @author 52196
  *
@@ -10,6 +12,10 @@ public class Square {
     
     Square() {
         piece = null;
+    }
+    
+    public Piece getPiece() {
+        return piece;
     }
     
     /**
@@ -28,11 +34,38 @@ public class Square {
      */
     public void put(Piece piece) {
         if (piece == null) {
-            throw new IllegalArgumentException("The piece can't be null");
+            throw new NullPointerException("The piece can't be null");
         } else if (!isFree()) {
-            throw new IllegalArgumentException("The square is not free");
+            throw new IllegalStateException("The square is not free");
         } else {
             this.piece = piece;
         }
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.piece);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Square other = (Square) obj;
+        if (!Objects.equals(this.piece, other.piece)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

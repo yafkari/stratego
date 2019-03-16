@@ -69,5 +69,5 @@ public class Piece {
         hash = 41 * hash + this.rank;
         hash = 41 * hash + Objects.hashCode(this.color);
         return hash;
-    }    
+    }
 }
