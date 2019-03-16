@@ -1,5 +1,7 @@
 package g52196.stratego.model;
 
+import java.util.Objects;
+
 /**
  * @author 52196
  * 
@@ -39,7 +41,33 @@ public class Piece {
     public PlayerColor getColor() {
         return color;
     }
-    
-    
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Piece other = (Piece) obj;
+        if (this.rank != other.rank) {
+            return false;
+        }
+        if (this.color != other.color) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + this.rank;
+        hash = 41 * hash + Objects.hashCode(this.color);
+        return hash;
+    }    
 }
