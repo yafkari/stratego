@@ -1,11 +1,13 @@
 package g52196.stratego.view;
 
+import g52196.stratego.model.PlayerColor;
 import g52196.stratego.model.Square;
 import java.util.Scanner;
-// TODO
+
 /**
  * @author 52196
  * 
+ * Is in charge of the interactions with the user
  */
 public class View {
     private Scanner in;
@@ -20,7 +22,7 @@ public class View {
      * 
      * Initialize the Scanner
      */
-    View() {
+    public View() {
         in = new Scanner(System.in);
     }
     
@@ -34,12 +36,14 @@ public class View {
             message
         + ANSI_RESET);
     }
+    
     /**
      * Displays a welcome message
      */
     public void initialize() {
-        System.out.println("Welcome in Stratego");
+        System.out.println("Welcome in Stratego\n");
     }
+    
     /**
      * Displays a goodbye message
      */    
@@ -60,7 +64,7 @@ public class View {
      * Displays the list of command available
      */
     public void displayHelp() {
-        info("List of available commands\n1 - Quit");
+        info("List of available commands\n1 - Quit\n");
     }
     
     /**
@@ -68,8 +72,7 @@ public class View {
      * @return the chosen command
      */
     public String askCommand() {
-        info("Please, choose one of the following commands:\n\n");
-        displayHelp();
+        info("Please, enter a command:\n");
         
         return in.nextLine().toLowerCase();
     }
@@ -82,10 +85,19 @@ public class View {
     public void displayBoard(Square[][] squares) {
         for (Square[] row : squares) {
             for (Square column : row) {
-                System.out.print(column);
+                if (column.isFree()) {
+                    System.out.print(" * ");
+                } else {
+                    if (column.getPiece().getColor() == PlayerColor.BLUE) {
+                        System.out.print(ANSI_BLUE + " " + column + " " + ANSI_RESET);
+                    } else {
+                        System.out.print(ANSI_RED + " " + column + " " + ANSI_RESET);
+                    }
+                }
             }
             System.out.println();
         }
+        System.out.println();
     }
     
     /**

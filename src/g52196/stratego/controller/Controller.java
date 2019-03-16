@@ -22,7 +22,7 @@ public class Controller {
      * @param view the current view
      * @throws NullPointerException if the game or the view is null
      */
-    Controller(Model game, View view) {
+    public Controller(Model game, View view) {
         if (game == null || view == null) {
             throw new NullPointerException("The game and the view can't be null !");
         }
@@ -33,13 +33,15 @@ public class Controller {
     /**
      * Initialize the game by initializing the view and the game
      */
-    void initialize() {
+    public void initialize() {
         game.initialize();
         view.initialize();
     }
     
-    
-    void startGame() {
+    /**
+     * Allows to start a game
+     */
+    public void startGame() {
         game.start();
         view.displayHelp();
         

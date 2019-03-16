@@ -66,6 +66,9 @@ public class Square {
         }
         return true;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return piece.toString();
+    }
 }

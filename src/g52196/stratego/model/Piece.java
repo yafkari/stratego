@@ -70,4 +70,9 @@ public class Piece {
         hash = 41 * hash + Objects.hashCode(this.color);
         return hash;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(rank);
+    }
 }
