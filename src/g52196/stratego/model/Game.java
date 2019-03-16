@@ -22,7 +22,11 @@ public class Game implements Model {
         current = new Player(PlayerColor.RED);
         opponent = new Player(PlayerColor.BLUE);
     }
-
+    
+    /**
+     * Initialize the game board with
+     * one flag and a general for each player
+     */
     @Override
     public void initialize() {
         board = new Board();
@@ -42,19 +46,32 @@ public class Game implements Model {
         opponent.addPiece(blueFlag);
         opponent.addPiece(blueGeneral); 
     }
-
+    
+    /**
+     * Checks if a match can start.
+     */
     @Override
     public void start() {
         if (board == null) {
             throw new IllegalStateException("The board is not set");
         }
     }
-
+    
+    /**
+     * Declares if it's the end of the game.
+     *
+     * @return true if it's the end of the game.
+     */
     @Override
     public boolean isOver() {
         return false;
     }
-
+    
+    /**
+     * Returns the board.
+     *
+     * @return the board.
+     */
     @Override
     public Square[][] getBoard() {
         return board.getSquares();
