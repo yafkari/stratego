@@ -6,17 +6,21 @@ package g52196.stratego.model;
  * Represents the game board
  */
 public class Board {
-    private Square[][] squares;
+    private Square[][] squares = new Square[5][4];
     
     /**
      * Constructor
      * 
-     * Creates a empty board with
+     * Creates empty squares on a board with
      * 5 rows and 4 columns
      * 
      */
     Board() {
-        squares = new Square[5][4];
+        for (int i = 0; i < squares.length; i++) {
+            for (int j = 0; j < squares[i].length; j++) {
+                squares[i][j] = new Square();
+            }
+        }
     }
     
     /**
@@ -34,7 +38,16 @@ public class Board {
      * @return true if the board contains the position
      */
     boolean isInside(Position position) {
-        return squares[position.getRow()][position.getColumn()] != null;
+        
+        if (position.getRow() < 0 || position.getRow() > squares.length-1) {
+            return false;
+        }
+        
+        if (position.getColumn() < 0 || position.getColumn() > squares[position.getRow()].length-1) {
+            return false;
+        }
+
+        return true;
     }
     
     /**
