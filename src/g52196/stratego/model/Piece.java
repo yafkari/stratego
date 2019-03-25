@@ -12,8 +12,6 @@ public class Piece {
     private PlayerColor color;
     
     /**
-     * Constructor
-     * 
      * Creates a Piece with a rank and a color that
      * have been passed in parameter.
      * 

@@ -11,8 +11,6 @@ public class Game implements Model {
     private Player opponent;
     
     /**
-     * Constructor
-     * 
      * Creates a game with a player and an opponent
      * 
      * The player is red

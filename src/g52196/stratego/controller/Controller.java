@@ -14,8 +14,6 @@ public class Controller {
     private View view;
     
     /**
-     * Constructor
-     * 
      * Initialize the attributes game and view
      * 
      * @param game the current game

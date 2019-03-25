@@ -9,8 +9,6 @@ public class Board {
     private Square[][] squares = new Square[5][4];
     
     /**
-     * Constructor
-     * 
      * Creates empty squares on a board with
      * 5 rows and 4 columns
      * 

@@ -14,6 +14,9 @@ public class Square {
         piece = null;
     }
     
+    /**
+     * @return the piece in the square
+     */
     public Piece getPiece() {
         return piece;
     }
@@ -69,6 +72,11 @@ public class Square {
 
     @Override
     public String toString() {
-        return piece.toString();
+        if (piece == null) {
+            return " ";
+        } else {
+            return piece.toString();
+
+        }
     }
 }

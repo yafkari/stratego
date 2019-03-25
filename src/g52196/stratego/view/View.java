@@ -18,8 +18,6 @@ public class View {
     public static final String ANSI_CYAN = "\u001B[36m";
     
     /**
-     * Constructor
-     * 
      * Initialize the Scanner
      */
     public View() {

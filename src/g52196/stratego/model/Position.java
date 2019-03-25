@@ -11,8 +11,6 @@ public class Position {
     private int column;
     
     /**
-     * Constructor
-     * 
      * Creates a positon with a row and a column
      * passed in parameter
      * 
