@@ -62,11 +62,11 @@ public class View {
      * Displays the list of command available
      */
     public void displayHelp() {
-        info("List of available commands\n1 - Quit\n");
+        info("List of available commands:\n1 - Quit\n");
     }
     
     /**
-     * Asks the user to choose a comamand
+     * Asks the user to choose a command
      * @return the chosen command
      */
     public String askCommand() {
@@ -84,12 +84,12 @@ public class View {
         for (Square[] row : squares) {
             for (Square column : row) {
                 if (column.isFree()) {
-                    System.out.print(" * ");
+                    System.out.print("| * |");
                 } else {
                     if (column.getPiece().getColor() == PlayerColor.BLUE) {
-                        System.out.print(ANSI_BLUE + " " + column + " " + ANSI_RESET);
+                        System.out.print("| " + ANSI_BLUE + column + ANSI_RESET + " |");
                     } else {
-                        System.out.print(ANSI_RED + " " + column + " " + ANSI_RESET);
+                        System.out.print("| " + ANSI_RED + column + ANSI_RESET + " |");
                     }
                 }
             }
