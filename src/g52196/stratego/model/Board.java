@@ -9,9 +9,8 @@ public class Board {
     private Square[][] squares = new Square[5][4];
     
     /**
-     * Creates empty squares on a board with
-     * 5 rows and 4 columns
-     * 
+     * Creates empty squares on the board with
+     * i rows and j columns
      */
     Board() {
         for (int i = 0; i < squares.length; i++) {
@@ -53,7 +52,7 @@ public class Board {
      * passed in parameter
      * 
      * @param position the position of the square to get
-     * @return the square at the position passed in paramter
+     * @return the square at the position passed in parameter
      * @throws IllegalArgumentException if the position is not on the board
      */
     Square getSquare(Position position) {
@@ -66,7 +65,7 @@ public class Board {
     
     /**
      * Put a piece on the board in the position 
-     * passed in paramater
+     * passed in parameter
      * 
      * @param piece the piece to be added to the board
      * @param position the position where the piece have to be added

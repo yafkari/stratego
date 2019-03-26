@@ -17,6 +17,7 @@ public class Piece {
      * 
      * @param rank the rank of the piece
      * @param color the color of the piece
+     * @throws IllegalArgumentException if the rank is negative
      */
     public Piece(int rank, PlayerColor color) {
         if (rank < 0) {
@@ -33,7 +34,7 @@ public class Piece {
         return rank;
     }
     
-    /**     * 
+    /**
      * @return the color of the piece
      */
     public PlayerColor getColor() {

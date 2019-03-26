@@ -10,6 +10,9 @@ import java.util.Objects;
 public class Square {
     private Piece piece;
     
+    /**
+     * Creates an empty square
+     */
     Square() {
         piece = null;
     }

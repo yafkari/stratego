@@ -11,7 +11,7 @@ public class Position {
     private int column;
     
     /**
-     * Creates a positon with a row and a column
+     * Creates a position with a row and a column
      * passed in parameter
      * 
      * @param row the position in y

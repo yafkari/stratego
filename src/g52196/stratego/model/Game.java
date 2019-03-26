@@ -14,7 +14,7 @@ public class Game implements Model {
      * Creates a game with a player and an opponent
      * 
      * The player is red
-     * Te opponent is blue
+     * The opponent is blue
      */
     public Game() {
         current = new Player(PlayerColor.RED);
@@ -47,6 +47,8 @@ public class Game implements Model {
     
     /**
      * Checks if a match can start.
+     * 
+     * @throws IllegalStateException if the board is not set yet
      */
     @Override
     public void start() {
@@ -58,7 +60,7 @@ public class Game implements Model {
     /**
      * Declares if it's the end of the game.
      *
-     * @return true if it's the end of the game.
+     * @return true if it is the end of the game.
      */
     @Override
     public boolean isOver() {
@@ -66,9 +68,7 @@ public class Game implements Model {
     }
     
     /**
-     * Returns the board.
-     *
-     * @return the board.
+     * @return the squares of the board
      */
     @Override
     public Square[][] getBoard() {
