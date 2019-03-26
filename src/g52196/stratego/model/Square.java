@@ -67,10 +67,8 @@ public class Square {
             return false;
         }
         final Square other = (Square) obj;
-        if (!Objects.equals(this.piece, other.piece)) {
-            return false;
-        }
-        return true;
+        
+        return Objects.equals(this.piece, other.piece);
     }
 
     @Override

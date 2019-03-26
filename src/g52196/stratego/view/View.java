@@ -81,8 +81,15 @@ public class View {
      * @param squares the board to be displayed
      */
     public void displayBoard(Square[][] squares) {
-        for (Square[] row : squares) {
-            for (Square column : row) {
+        
+        System.out.print(" Col#   ");
+        for (int i = 0; i < squares[0].length; i++) {
+            System.out.print("| "+i+" |");
+        }
+        System.out.println("\n ===========================");
+        for (int i = 0; i < squares.length; i++) {
+            System.out.print(" Row# " + i + " ");
+            for (Square column : squares[i]) {
                 if (column.isFree()) {
                     System.out.print("| * |");
                 } else {
