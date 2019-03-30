@@ -6,6 +6,7 @@ import java.util.List;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -154,5 +155,14 @@ public class GameTest {
         Player result = instance.getCurrent();
         Player expResult = new Player(PlayerColor.RED);
         assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testHasMoves() {
+        System.out.println("testHasMoves");
+        Game instance = new Game();
+        instance.initialize();
+        Boolean result = instance.hasMoves(new Player(PlayerColor.RED));
+        assertTrue(result);
     }
 }

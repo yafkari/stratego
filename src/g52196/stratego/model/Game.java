@@ -121,8 +121,7 @@ public class Game implements Model {
     }
     
     /**
-     * 
-     * @return 
+     * @return the possible moves
      */
     @Override
     public List<Move> getMoves() {
@@ -226,5 +225,24 @@ public class Game implements Model {
      */
     public Player getCurrent() {
         return current;
+    }
+    
+    /**
+     * Checks if the player has piece that can move
+     * 
+     * @param player the player to check if he has a piece he can move
+     * @return true if the player can move a piece
+     */
+    public boolean hasMoves(Player player) {
+        Position tmp = selected;
+        for (Position position : board.getTakenSquare(player)) {
+            selected = position;
+            if (getMoves().size() < 0) {
+                selected = tmp;
+                return false;
+            }
+        }
+        selected = tmp;
+        return true;
     }
 }
