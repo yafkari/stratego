@@ -47,10 +47,21 @@ public class Controller {
             view.displayBoard(game.getBoard());
             String command = view.askCommand();
             
-            if (command == "quit") {
+            if (command.equalsIgnoreCase("quit")) {
                 break;
-            } 
-            if (command.substring(0,6).equalsIgnoreCase("select")) {
+            }
+            if (command.equalsIgnoreCase("moves")) {
+                try {
+                    game.getSelected();
+                    view.displayMoves(game.getMoves());
+
+                } catch (NullPointerException e) {
+                    System.out.println("You haven't selected a piece yet !");
+                    System.out.println("Please retry");
+                }
+                
+            }
+            if (command.length() > 5 && command.substring(0,6).equalsIgnoreCase("select")) {
                 String row = command.substring(7, 8);
                 String column = command.substring(9, 10);
                 

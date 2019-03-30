@@ -1,8 +1,10 @@
 package g52196.stratego.view;
 
+import g52196.stratego.model.Move;
 import g52196.stratego.model.Piece;
 import g52196.stratego.model.PlayerColor;
 import g52196.stratego.model.Square;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -66,6 +68,7 @@ public class View {
         info("1 - Quit the game : quit");
         info("2 - Select a piece : select " 
                 + ANSI_RESET + "row column");
+        info("3 - See the possible moves of the selected piece : moves");
     }
     
     /**
@@ -122,5 +125,16 @@ public class View {
      */
     public void displaySelected(Piece piece) {
         System.out.println(piece);
+    }
+    
+    public void displayMoves(List<Move> moves) {
+        System.out.println(moves.size() + " possible move(s)");
+        for (int i = 0; i < moves.size(); i++) {
+            Move move = moves.get(i);
+            System.out.println(i + " - " + 
+                    move.getPiece() + " can move to the row " + 
+                    move.getEnd().getRow() + " and the column " + 
+                    move.getEnd().getColumn());
+        }
     }
 }
