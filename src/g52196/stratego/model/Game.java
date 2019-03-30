@@ -170,6 +170,7 @@ public class Game implements Model {
      * @throws NullPointerException if the move passed in parameter is null
      * @throws IllegalArgumentException if the move is not valid
      */
+    @Override
     public void apply(Move move) {
         if (move == null) {
             throw new NullPointerException("the move can't be null");

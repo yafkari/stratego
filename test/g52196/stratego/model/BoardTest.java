@@ -296,7 +296,7 @@ public class BoardTest {
         instance.put(new Piece(1, PlayerColor.RED), new Position(1, 1));
         instance.remove(new Position(1, 1));
         Square result = instance.getSquare(new Position(1, 1));
-        assertEquals(null, result);
+        assertEquals(new Square(), result);
     }
     
     @Test(expected = IllegalArgumentException.class)

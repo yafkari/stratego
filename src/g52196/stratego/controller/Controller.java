@@ -1,6 +1,7 @@
 package g52196.stratego.controller;
 
 import g52196.stratego.model.Model;
+import g52196.stratego.model.Move;
 import g52196.stratego.view.View;
 
 /**
@@ -61,7 +62,7 @@ public class Controller {
                 }
                 
             }
-            if (command.length() > 5 && command.substring(0,6).equalsIgnoreCase("select")) {
+            if (command.length() > 9 && command.substring(0,6).equalsIgnoreCase("select")) {
                 String row = command.substring(7, 8);
                 String column = command.substring(9, 10);
                 
@@ -71,6 +72,14 @@ public class Controller {
                     System.out.println("Please enter numbers !");
                     System.out.println("Example: select 1 2");
 
+                }
+            }
+            if (command.length() > 6 && command.substring(0,5).equalsIgnoreCase("apply")) {
+                try {
+                    int number = Integer.parseInt(command.substring(6,7));
+                    game.apply(game.getMoves().get(number));
+                } catch (Exception e) {
+                    System.out.println(e);
                 }
             }
         }

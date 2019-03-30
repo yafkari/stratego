@@ -69,6 +69,8 @@ public class View {
         info("2 - Select a piece : select " 
                 + ANSI_RESET + "row column");
         info("3 - See the possible moves of the selected piece : moves");
+        info("4 - Apply a move by choosing the move number of the moves command : "
+                + "apply " + ANSI_RESET + "number");
     }
     
     /**

@@ -123,7 +123,7 @@ public class Board {
         }
         
         if (!getSquare(position).isFree()) {
-            this.getSquares()[position.getRow()][position.getColumn()] = null;
+            this.getSquares()[position.getRow()][position.getColumn()] = new Square();
         }
     }
 }
