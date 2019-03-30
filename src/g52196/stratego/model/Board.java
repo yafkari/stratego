@@ -1,5 +1,8 @@
 package g52196.stratego.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author 52196
  *
@@ -125,5 +128,23 @@ public class Board {
         if (!getSquare(position).isFree()) {
             this.getSquares()[position.getRow()][position.getColumn()] = new Square();
         }
+    }
+    
+    /**
+     * @param player the player for who we look for the taken squares
+     * @return the list of squares owned by the player passed in parameter
+     */
+    public List<Position> getTakenSquare(Player player) {
+        List<Position> takenSquares = new ArrayList<>();
+        
+        for (int i = 0; i < getSquares().length; i++) {
+            for (int j = 0; j < getSquares()[i].length; j++) {
+                if (getSquares()[i][j].isMyOwn(player.getColor())) {
+                    takenSquares.add(new Position(i, j));
+                }
+            }
+        }
+        
+        return takenSquares;
     }
 }
