@@ -72,4 +72,7 @@ public interface Model {
      * @return the current player
      */
     Player getCurrent();
+    
+    
+    List<Player> getWinners();
 }

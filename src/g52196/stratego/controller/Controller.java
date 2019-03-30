@@ -87,6 +87,6 @@ public class Controller {
             }
         }
         
-        view.displayOver();
+        view.displayOver(game.getWinners());
     }
 }
