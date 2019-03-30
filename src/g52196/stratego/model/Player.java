@@ -1,5 +1,6 @@
 package g52196.stratego.model;
 
+import g52196.stratego.model.pieces.Flag;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -51,6 +52,18 @@ public class Player {
      */
     public void addPiece(Piece piece) {
         pieces.add(piece);
+    }
+    
+    /**
+     * @return true if the current player has a flag, else false
+     */
+    public boolean hasFlag() {
+        for(Piece piece: pieces) {
+            if (piece.hasSameRank(new Flag(PlayerColor.RED))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

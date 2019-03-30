@@ -125,4 +125,12 @@ public class PlayerTest {
         Player player1 = new Player(PlayerColor.BLUE);
         assertFalse(player1.equals(null));
     }
+    
+    @Test
+    public void testHasFlag() {
+        Game instance = new Game();
+        instance.initialize();
+        Boolean result = instance.getCurrent().hasFlag();
+        assertTrue(result);
+    }
 }
