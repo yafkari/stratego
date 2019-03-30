@@ -35,7 +35,19 @@ public class Position {
     public int getColumn() {
         return column;
     }
-
+    
+    /**
+     * Returns the next position depending 
+     * to the direction passed in parameter
+     * 
+     * @param direction the direction to know the next position
+     * @return the next position
+     */
+    public Position next(Direction direction) {
+        return new Position(row + direction.getRow(), 
+                column + direction.getColumn());
+    }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
