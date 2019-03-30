@@ -78,4 +78,25 @@ public class Board {
             squares[position.getRow()][position.getColumn()].put(piece);
         }
     }
+    
+    /**
+     * Checks if the square at the position passed in parameter is empty
+     * 
+     * @param position the position to be checked
+     * @return true if the square at the position passed in parameter is null
+     * @throws IllegalArgumentException if the giver position is not on the board
+     */
+    public Boolean isFree(Position position) {
+        if (!isInside(position)) {
+            throw new IllegalArgumentException("The position is not on the board");
+        }
+        return getSquare(position).isFree();
+    }
+    
+    public Boolean isMyOwn(Position position, PlayerColor color) {
+        if(!getSquare(position).isFree()) {
+            return getSquare(position).getPiece().getColor() == color;
+        }
+        return false;
+    }
 }

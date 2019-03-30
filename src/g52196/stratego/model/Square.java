@@ -59,7 +59,6 @@ public class Square {
         if (!isFree()) {
             return getPiece().getColor() == color;
         }
-        
         return false;
     }
     
@@ -82,7 +81,7 @@ public class Square {
             return false;
         }
         final Square other = (Square) obj;
-        
+
         return Objects.equals(this.piece, other.piece);
     }
 
@@ -92,7 +91,6 @@ public class Square {
             return " ";
         } else {
             return piece.toString();
-
         }
     }
 }
