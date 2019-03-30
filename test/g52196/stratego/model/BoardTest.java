@@ -305,4 +305,23 @@ public class BoardTest {
         Board instance = new Board();
         instance.isMyOwn(new Position(22, 1),PlayerColor.RED);
     }
+    
+    @Test
+    public void testGetTakenSquare() {
+        System.out.println("testGetTakenSquare");
+        Board instance = new Board();
+        instance.put(new Piece(1, PlayerColor.RED), new Position(1,1));
+        int expResult = 1;
+        int result = instance.getTakenSquare(new Player(PlayerColor.RED)).size();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testGetTakenSquareWhenEmpty() {
+        System.out.println("testGetTakenSquareWhenEmpty");
+        Board instance = new Board();
+        int expResult = 0;
+        int result = instance.getTakenSquare(new Player(PlayerColor.RED)).size();
+        assertEquals(expResult, result);
+    }
 }
