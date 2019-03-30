@@ -60,4 +60,11 @@ public interface Model {
      * @return the list of possible moves
      */
     List<Move> getMoves();
+    
+    /**
+     * Allows the user to apply a movement to a piece
+     * 
+     * @param move the movement to be applied
+     */
+    void apply(Move move);
 }

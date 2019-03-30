@@ -129,13 +129,12 @@ public class Game implements Model {
         }
         
         List<Move> possibleMoves = new ArrayList<>();
-        
-        
+
         for (Direction direction : Direction.values()) {
             Position nextPosition = selected.next(direction);
             if (board.isInside(nextPosition)) {
                 if (board.isFree(nextPosition) || 
-                        !board.isMyOwn(nextPosition, current.getColor())) {
+                    !board.isMyOwn(nextPosition, current.getColor())) {
                     
                     possibleMoves.add(new Move(
                             board.getSquare(selected).getPiece(), 
@@ -145,5 +144,66 @@ public class Game implements Model {
             }
         }
         return possibleMoves;
+    }
+    
+    /**
+     * 
+     * Applies the move passed in paramater and carries out several operations
+     * 
+     * <ul>
+     *  <li>Removes the piece at the starting position</li>
+     *  <li>if the end position is empty the piece is moved to the arrival</li>
+     *  <li>if the end position is not empty the two pieces begins a battle
+     *   <ul>
+     *    <li>
+     *     if the piece to move win the battle, the opponent piece is removed
+     *     and it is replaced by the piece to move
+     *    </li>
+     *    <li>if the two pieces have the same rank, both are removed</li>
+     *    <li>if the piece lose the battle, only the piece to move is removed</li>
+     *   </ul>
+     *  </li>
+     *  <li>the list of pieces of the two players are updated</li>
+     * </ul>
+     * 
+     * @param move 
+     * @throws NullPointerException if the move passed in parameter is null
+     * @throws IllegalArgumentException if the move is not valid
+     */
+    public void apply(Move move) {
+        if (move == null) {
+            throw new NullPointerException("the move can't be null");
+        }
+        
+        Position end = move.getEnd();
+        Piece piece = move.getPiece();
+        
+        if (board.isInside(end) || 
+            board.getSquare(move.getStart()).getPiece() == piece ||
+                board.getSquare(end).getPiece().getColor() != piece.getColor()) {
+            
+            board.remove(move.getStart());
+            
+            if (board.isFree(end)) {
+                board.put(piece, end);
+            } else {
+                if (piece.isStronger(board.getSquare(end).getPiece())) {
+                    board.remove(end);
+                    board.put(piece, end);
+                    
+                    opponent.getPieces().remove(board.getSquare(end).getPiece());
+                }
+                if (piece.hasSameRank(board.getSquare(end).getPiece())) {
+                    board.remove(end);
+                    board.remove(move.getStart());
+                    
+                    current
+                      .getPieces()
+                      .remove(board.getSquare(move.getStart()).getPiece());
+                    opponent.getPieces().remove(board.getSquare(end).getPiece());
+
+                }
+            }
+        }
     }
 }
