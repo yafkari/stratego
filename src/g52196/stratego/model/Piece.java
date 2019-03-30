@@ -58,7 +58,7 @@ public class Piece {
      * to the other one passed in paramater
      * 
      * @param other the piece to be compared to the current piece
-     * @return true if the pieces have the same rank, otherwise false
+     * @return true if the pieces have the same rank, else false
      */
     public boolean hasSameRank(Piece other) {
         return rank == other.rank;
