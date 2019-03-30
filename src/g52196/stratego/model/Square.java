@@ -33,10 +33,12 @@ public class Square {
     
     /**
      * Add a piece to the square if
-     * - the piece is not null
-     * - the square is free
+     * the piece is not null
+     * and the square is free
      * 
      * @param piece the piece to be added
+     * @throws NullPointerException if the piece passed in parameter is null
+     * @throws IllegalStateException if the square is not empty
      */
     public void put(Piece piece) {
         if (piece == null) {

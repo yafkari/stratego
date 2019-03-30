@@ -83,7 +83,7 @@ public class Board {
      *
      * @param position the position to be checked
      * @return true if the square at the position passed in parameter is null
-     * @throws IllegalArgumentException if the giver position is not on the
+     * @throws IllegalArgumentException if the given position is not on the
      * board
      */
     public boolean isFree(Position position) {
@@ -107,5 +107,23 @@ public class Board {
             return getSquare(position).getPiece().getColor() == color;
         }
         return false;
+    }
+    
+    /**
+     * Removes a piece from the board
+     * 
+     * @param position the position of the piece to remove
+     * @throws IllegalArgumentException if the given position is not on the
+     * board
+     */
+    public void remove(Position position) {
+        if (!isInside(position)) {
+            throw new IllegalArgumentException(
+                    "The position is not on the board");
+        }
+        
+        if (!getSquare(position).isFree()) {
+            this.getSquares()[position.getRow()][position.getColumn()] = null;
+        }
     }
 }

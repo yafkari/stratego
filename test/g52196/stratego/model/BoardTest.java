@@ -289,6 +289,16 @@ public class BoardTest {
         assertEquals(expResult, result);
     }
     
+    @Test
+    public void testRemove() {
+        System.out.println("testRemove");
+        Board instance = new Board();
+        instance.put(new Piece(1, PlayerColor.RED), new Position(1, 1));
+        instance.remove(new Position(1, 1));
+        Square result = instance.getSquare(new Position(1, 1));
+        assertEquals(null, result);
+    }
+    
     @Test(expected = IllegalArgumentException.class)
     public void testIsMyOwnWhenNotOnBoard() {
         System.out.println("testIsMyOwnWhenNotOnBoard");
