@@ -9,6 +9,7 @@ public class Game implements Model {
     private Board board;
     private Player current;
     private Player opponent;
+    private Position selected;
     
     /**
      * Creates a game with a player and an opponent
@@ -75,5 +76,42 @@ public class Game implements Model {
         return board.getSquares();
     }
     
+    /**
+     * Select a piece on the current board
+     * 
+     * @param row the row of the desired piece
+     * @param column the column of the desired piece
+     * @throws IllegalArgumentException if the position is not on the board
+     * @throws IllegalArgumentException if the square at the position is empty
+     * @throws IllegalArgumentException if the square is not owned by the player
+     */
+    @Override
+    public void select(int row, int column) {
+        if (!board.isInside(new Position(row, column))) {
+            throw new IllegalArgumentException(
+                    "The position is not on the board");
+        }
+        if (board.getSquare(new Position(row, column)).isFree()) {
+            throw new IllegalArgumentException(
+                    "You are trying to select an empty square");
+        }
+        if (!board.isMyOwn(new Position(row, column), current.getColor())) {
+            throw new IllegalArgumentException(
+                    "You are trying to select an opponent piece");
+        }
+        
+        selected = new Position(row, column);
+    }
     
+    /**
+     * @return the selected piece
+     * @throws NullPointerException if the selected piece is empty
+     */
+    @Override
+    public Piece getSelected() {
+        if (selected == null) {
+            throw new NullPointerException("The selected piece is empty");
+        }
+        return board.getSquare(selected).getPiece();
+    };
 }

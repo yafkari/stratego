@@ -27,7 +27,7 @@ public class Square {
     /**
      * @return if the piece is empty
      */
-    public Boolean isFree() {
+    public boolean isFree() {
         return piece == null;
     }
     
@@ -55,7 +55,7 @@ public class Square {
      * @param color the color of the current piece
      * @return true if the piece has the same color than the player otherwise false
      */
-    public Boolean isMyOwn(PlayerColor color) {
+    public boolean isMyOwn(PlayerColor color) {
         if (!isFree()) {
             return getPiece().getColor() == color;
         }

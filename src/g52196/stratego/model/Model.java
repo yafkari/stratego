@@ -10,7 +10,7 @@ package g52196.stratego.model;
  * <a href="https://fr.wikipedia.org/wiki/Fa%C3%A7ade_(patron_de_conception)">
  * Façade (patron de conception)
  * </a>
- * @author EsiProf
+ * @author EsiProf, 52196
  */
 public interface Model {
     
@@ -40,4 +40,17 @@ public interface Model {
      * @return the board.
      */
     Square[][] getBoard();
+    
+    /**
+     * Allows the user to select a piece
+     * 
+     * @param row the row where the piece is located
+     * @param column the column where the piece is located 
+     */
+    void select(int row, int column);
+    
+    /**
+     * @return the selected piece
+     */
+    Piece getSelected();
 }
