@@ -46,6 +46,7 @@ public class Controller {
         
         while (!game.isOver()) {
             view.displayBoard(game.getBoard());
+            view.displayCurrentPlayer(game.getCurrent());
             String command = view.askCommand();
             
             if (command.equalsIgnoreCase("quit")) {

@@ -206,5 +206,23 @@ public class Game implements Model {
                 }
             }
         }
+        
+        swapPlayers();
+    }
+    
+    /**
+     * Swap the players
+     */
+    public void swapPlayers() {
+        Player tmp = opponent;
+        Player opponent = current;
+        current = tmp;
+    }
+    
+    /**
+     * @return the current player
+     */
+    public Player getCurrent() {
+        return current;
     }
 }

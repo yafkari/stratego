@@ -136,4 +136,23 @@ public class GameTest {
         instance.initialize();
         instance.getMoves();
     }
+    
+    @Test
+    public void testSwapPlayers() {
+        System.out.println("testSwapPlayers");
+        Game instance = new Game();
+        instance.swapPlayers();
+        Player result = instance.getCurrent();
+        Player expResult = new Player(PlayerColor.BLUE);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testGetCurrent() {
+        System.out.println("testGetCurrent");
+        Game instance = new Game();
+        Player result = instance.getCurrent();
+        Player expResult = new Player(PlayerColor.RED);
+        assertEquals(expResult, result);
+    }
 }

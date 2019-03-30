@@ -2,6 +2,7 @@ package g52196.stratego.view;
 
 import g52196.stratego.model.Move;
 import g52196.stratego.model.Piece;
+import g52196.stratego.model.Player;
 import g52196.stratego.model.PlayerColor;
 import g52196.stratego.model.Square;
 import java.util.List;
@@ -138,5 +139,9 @@ public class View {
                     move.getEnd().getRow() + " and the column " + 
                     move.getEnd().getColumn());
         }
+    }
+    
+    public void displayCurrentPlayer(Player player) {
+        info("It is the turn of the " + player.getColor() + " player...");
     }
 }

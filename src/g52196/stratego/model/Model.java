@@ -67,4 +67,9 @@ public interface Model {
      * @param move the movement to be applied
      */
     void apply(Move move);
+    
+    /**
+     * @return the current player
+     */
+    Player getCurrent();
 }
