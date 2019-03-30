@@ -76,4 +76,9 @@ public class Position {
         hash = 61 * hash + this.column;
         return hash;
     }
+
+    @Override
+    public String toString() {
+        return row + "," + column;
+    }
 }

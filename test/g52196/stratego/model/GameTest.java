@@ -2,6 +2,7 @@ package g52196.stratego.model;
 
 import static g52196.stratego.model.PlayerColor.BLUE;
 import static g52196.stratego.model.PlayerColor.RED;
+import java.util.List;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -116,5 +117,23 @@ public class GameTest {
         Game instance = new Game();
         instance.initialize();
         instance.getSelected();
+    }
+    
+    @Test
+    public void testGetMoves() {
+        System.out.println("testGetMoves");
+        Game instance = new Game();
+        instance.initialize();
+        instance.select(3, 2);
+        List<Move> result = instance.getMoves();
+        assertEquals(4, result.size());
+    }
+    
+    @Test(expected = NullPointerException.class)
+    public void testGetMovesWhenSelectedIsNull() {
+        System.out.println("testGetMovesWhenSelectedIsNull");
+        Game instance = new Game();
+        instance.initialize();
+        instance.getMoves();
     }
 }

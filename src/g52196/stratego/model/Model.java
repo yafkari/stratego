@@ -1,5 +1,7 @@
 package g52196.stratego.model;
 
+import java.util.List;
+
 /**
  * Model of Stratego.
  *
@@ -53,4 +55,9 @@ public interface Model {
      * @return the selected piece
      */
     Piece getSelected();
+    
+    /**
+     * @return the list of possible moves
+     */
+    List<Move> getMoves();
 }

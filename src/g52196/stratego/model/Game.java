@@ -1,5 +1,8 @@
 package g52196.stratego.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author 52196
  *
@@ -113,5 +116,34 @@ public class Game implements Model {
             throw new NullPointerException("The selected piece is empty");
         }
         return board.getSquare(selected).getPiece();
-    };
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    @Override
+    public List<Move> getMoves() {
+        if (selected == null) {
+            throw new NullPointerException("The selected piece is empty");
+        }
+        
+        List<Move> possibleMoves = new ArrayList<>();
+        
+        
+        for (Direction direction : Direction.values()) {
+            Position nextPosition = selected.next(direction);
+            if (board.isInside(nextPosition)) {
+                if (board.isFree(nextPosition) || 
+                        !board.isMyOwn(nextPosition, current.getColor())) {
+                    
+                    possibleMoves.add(new Move(
+                            board.getSquare(selected).getPiece(), 
+                            new Position(selected.getRow(), selected.getColumn()), 
+                            nextPosition));
+                }
+            }
+        }
+        return possibleMoves;
+    }
 }
