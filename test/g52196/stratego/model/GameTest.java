@@ -165,4 +165,12 @@ public class GameTest {
         Boolean result = instance.hasMoves(new Player(PlayerColor.RED));
         assertTrue(result);
     }
+    
+    @Test(expected = IllegalStateException.class)
+    public void testGetWinnersWhenNotOver() {
+        System.out.println("testGetWinnersWhenNotOver");
+        Game instance = new Game();
+        instance.initialize();
+        instance.getWinners();
+    }
 }

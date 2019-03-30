@@ -117,8 +117,14 @@ public class View {
     /**
      * Indicates to the player that the game is over
      */
-    public void displayOver() {
+    public void displayOver(List<Player> winners) {
         info("GAME OVER");
+        info("Congratulations to :");
+        for(Player player : winners) {
+            System.out.println("The " + 
+                    player.getColor().toString().toLowerCase() + 
+                    " player !");
+        }
     }
     
     /**

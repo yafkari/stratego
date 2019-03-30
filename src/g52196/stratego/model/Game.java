@@ -256,4 +256,25 @@ public class Game implements Model {
         selected = tmp;
         return true;
     }
+    
+    /**
+     * @return the list of winners
+     * @throws IllegalStateException if the game is not over
+     */
+    public List<Player> getWinners() {
+        if (!isOver()) {
+            System.out.println("tese");
+            throw new IllegalStateException("The game is not over");
+        }
+        List<Player> winners = new ArrayList<>();
+        
+        if (current.hasFlag()) {
+            winners.add(current);
+        }
+        if (opponent.hasFlag()) {
+            winners.add(opponent);
+        }
+        
+        return winners;
+    }
 }
