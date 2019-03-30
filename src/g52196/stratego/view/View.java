@@ -1,5 +1,6 @@
 package g52196.stratego.view;
 
+import g52196.stratego.model.Piece;
 import g52196.stratego.model.PlayerColor;
 import g52196.stratego.model.Square;
 import java.util.Scanner;
@@ -16,7 +17,6 @@ public class View {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_CYAN = "\u001B[36m";
-    
     /**
      * Initialize the Scanner
      */
@@ -59,10 +59,13 @@ public class View {
     }
     
     /**
-     * Displays the list of command available
+     * Displays the list of availabe commands
      */
     public void displayHelp() {
-        info("List of available commands:\n1 - Quit\n");
+        info("List of available commands:");
+        info("1 - Quit the game : quit");
+        info("2 - Select a piece : select " 
+                + ANSI_RESET + "row column");
     }
     
     /**
@@ -70,7 +73,7 @@ public class View {
      * @return the chosen command
      */
     public String askCommand() {
-        info("Please, enter a command:\n");
+        info("Please, enter a command: \n");
         
         return in.nextLine().toLowerCase();
     }
@@ -82,7 +85,7 @@ public class View {
      */
     public void displayBoard(Square[][] squares) {
         
-        System.out.print(" Col#   ");
+        System.out.print("\n Col#   ");
         for (int i = 0; i < squares[0].length; i++) {
             System.out.print("| "+i+" |");
         }
@@ -110,5 +113,14 @@ public class View {
      */
     public void displayOver() {
         info("GAME OVER");
+    }
+    
+    /**
+     * Displays the selected piece passed in parameter
+     * 
+     * @param piece the selected piece
+     */
+    public void displaySelected(Piece piece) {
+        System.out.println(piece);
     }
 }
