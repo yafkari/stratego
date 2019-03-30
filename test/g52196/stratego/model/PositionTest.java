@@ -74,5 +74,41 @@ public class PositionTest {
         Position position1 = new Position(2, 96);
         assertFalse(position1.equals(null));
     }
-
+    
+    @Test
+    public void testNextUP() {
+        System.out.println("testNextUP");
+        Position position = new Position(1,1);
+        Position expResult = new Position(0,1);
+        Position result = position.next(Direction.UP);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testNextDOWN() {
+        System.out.println("testNextDOWN");
+        Position position = new Position(1,1);
+        Position expResult = new Position(2,1);
+        Position result = position.next(Direction.DOWN);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testNextLEFT() {
+        System.out.println("testNextLEFT");
+        Position position = new Position(1,1);
+        Position expResult = new Position(1,0);
+        Position result = position.next(Direction.LEFT);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testNextRIGHT() {
+        System.out.println("testNextRIGHT");
+        Position position = new Position(1,1);
+        Position expResult = new Position(1,2);
+        Position result = position.next(Direction.RIGHT);
+        assertEquals(expResult, result);
+    }
+    
 }
