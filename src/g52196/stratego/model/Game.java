@@ -65,11 +65,20 @@ public class Game implements Model {
     
     /**
      * Declares if it's the end of the game.
-     *
+     * <ul>
+     *  <li>The game is done if a player can't move</li>
+     *  <li>The game is done if a player has lost his flag</li>
+     * </ul>
+     * 
      * @return true if it is the end of the game.
      */
     @Override
     public boolean isOver() {
+        if(!current.hasFlag() || !opponent.hasFlag() || 
+            !hasMoves(current) || !hasMoves(opponent)) {
+            return true;
+        }
+            
         return false;
     }
     
@@ -215,9 +224,11 @@ public class Game implements Model {
      * Swap the players
      */
     public void swapPlayers() {
-        Player tmp = opponent;
-        Player opponent = current;
-        current = tmp;
+        if (hasMoves(opponent)) {
+            Player tmp = opponent;
+            Player opponent = current;
+            current = tmp;
+        }
     }
     
     /**
