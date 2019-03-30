@@ -1,5 +1,7 @@
 package g52196.stratego.model;
 
+import g52196.stratego.model.pieces.Flag;
+import g52196.stratego.model.pieces.General;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,10 +35,10 @@ public class Game implements Model {
     public void initialize() {
         board = new Board();
         
-        Piece redFlag = new Piece(0, current.getColor());
-        Piece blueFlag = new Piece(0, opponent.getColor());
-        Piece redGeneral = new Piece(9, current.getColor());
-        Piece blueGeneral = new Piece(9, opponent.getColor());
+        Piece redFlag = new Flag(current.getColor());
+        Piece blueFlag = new Flag(opponent.getColor());
+        Piece redGeneral = new General(current.getColor());
+        Piece blueGeneral = new General(opponent.getColor());
         
         board.put(redFlag, new Position(0,1));
         board.put(blueFlag, new Position(4,2));

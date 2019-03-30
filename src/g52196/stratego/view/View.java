@@ -127,7 +127,7 @@ public class View {
      * @param piece the selected piece
      */
     public void displaySelected(Piece piece) {
-        System.out.println(piece);
+        System.out.print(piece.getClass().getSimpleName());
     }
     
     public void displayMoves(List<Move> moves) {

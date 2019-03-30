@@ -69,6 +69,8 @@ public class Controller {
                 
                 try {
                     game.select(Integer.parseInt(row), Integer.parseInt(column));
+                    view.displaySelected(game.getSelected());
+                    System.out.println(" is selected");
                 } catch (NumberFormatException err) {
                     System.out.println("Please enter numbers !");
                     System.out.println("Example: select 1 2");
