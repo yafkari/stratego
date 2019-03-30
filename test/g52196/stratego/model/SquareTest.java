@@ -8,7 +8,36 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 public class SquareTest {
+    
+    @Test
+    public void testIsMyOwnTrue() {
+        System.out.println("testIsMyOwnTrue");
+        Square instance = new Square();
+        instance.put(new Piece(4, PlayerColor.BLUE));
+        boolean expResult = true;
+        boolean result = instance.isMyOwn(PlayerColor.BLUE);
+        assertEquals(expResult, result);
+    }
 
+    @Test
+    public void testIsMyOwnFalse() {
+        System.out.println("testIsMyOwnFalse");
+        Square instance = new Square();
+        instance.put(new Piece(4, PlayerColor.BLUE));
+        boolean expResult = false;
+        boolean result = instance.isMyOwn(PlayerColor.RED);
+        assertEquals(expResult, result);
+    }
+        
+    @Test
+    public void testIsMyOwnEmpty() {
+        System.out.println("testIsMyOwnEmpty");
+        Square instance = new Square();
+        boolean expResult = false;
+        boolean result = instance.isMyOwn(PlayerColor.BLUE);
+        assertEquals(expResult, result);
+    }
+    
     @Test
     public void testIsFreeTrue() {
         System.out.println("testIsFreeTrue");

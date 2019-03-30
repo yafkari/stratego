@@ -47,7 +47,22 @@ public class Square {
             this.piece = piece;
         }
     }
-
+    
+    /**
+     * Checks if the current piece has 
+     * the same color than the player
+     * 
+     * @param color the color of the current piece
+     * @return true if the piece has the same color than the player otherwise false
+     */
+    public Boolean isMyOwn(PlayerColor color) {
+        if (!isFree()) {
+            return getPiece().getColor() == color;
+        }
+        
+        return false;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;
