@@ -37,7 +37,7 @@ public class Controller {
     }
     
     /**
-     * Allows to start a game
+     * Start the game and handle the commands
      */
     public void startGame() {
         game.start();
@@ -45,7 +45,23 @@ public class Controller {
         
         while (!game.isOver()) {
             view.displayBoard(game.getBoard());
-            view.askCommand();
+            String command = view.askCommand();
+            
+            if (command == "quit") {
+                break;
+            } 
+            if (command.substring(0,6).equalsIgnoreCase("select")) {
+                String row = command.substring(7, 8);
+                String column = command.substring(9, 10);
+                
+                try {
+                    game.select(Integer.parseInt(row), Integer.parseInt(column));
+                } catch (NumberFormatException err) {
+                    System.out.println("Please enter numbers !");
+                    System.out.println("Example: select 1 2");
+
+                }
+            }
         }
         
         view.displayOver();
