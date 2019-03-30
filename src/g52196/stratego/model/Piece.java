@@ -40,6 +40,29 @@ public class Piece {
     public PlayerColor getColor() {
         return color;
     }
+    
+    /**
+     * Checks if the current piece is 
+     * strictly greater than the other one
+     * 
+     * @param other the piece to be compared to the current piece
+     * @return true if the current piece is stricly greater 
+     * than the other one, else false
+     */
+    public boolean isStronger(Piece other) {
+        return rank > other.rank;
+    }
+    
+    /**
+     * Checks if the current piece equals 
+     * to the other one passed in paramater
+     * 
+     * @param other the piece to be compared to the current piece
+     * @return true if the pieces have the same rank, otherwise false
+     */
+    public boolean hasSameRank(Piece other) {
+        return rank == other.rank;
+    }
 
     @Override
     public boolean equals(Object obj) {

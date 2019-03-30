@@ -99,5 +99,40 @@ public class PieceTest {
         Piece piece1 = new Piece(10, BLUE);
         assertFalse(piece1.equals(null));
     }
-
+    
+    @Test
+    public void testIsStrongerTrue() {
+        System.out.println("testIsStrongerTrue");
+        Piece piece1 = new Piece(2, BLUE);
+        Piece piece2 = new Piece(1, BLUE);
+        Boolean result = piece1.isStronger(piece2);
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testIsStrongerFalse() {
+        System.out.println("testIsStrongerFalse");
+        Piece piece1 = new Piece(1, BLUE);
+        Piece piece2 = new Piece(2, BLUE);
+        Boolean result = piece1.isStronger(piece2);
+        assertFalse(result);
+    }
+    
+    @Test
+    public void testhasSameRankTrue() {
+        System.out.println("testhasSameRankTrue");
+        Piece piece1 = new Piece(2, BLUE);
+        Piece piece2 = new Piece(2, BLUE);
+        Boolean result = piece1.hasSameRank(piece2);
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testhasSameRankFalse() {
+        System.out.println("testhasSameRankFalse");
+        Piece piece1 = new Piece(1, BLUE);
+        Piece piece2 = new Piece(2, BLUE);
+        Boolean result = piece1.hasSameRank(piece2);
+        assertFalse(result);
+    }
 }
