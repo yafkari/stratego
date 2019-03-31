@@ -2,6 +2,8 @@ package g52196.stratego.model;
 
 import static g52196.stratego.model.PlayerColor.BLUE;
 import static g52196.stratego.model.PlayerColor.RED;
+import g52196.stratego.model.pieces.Flag;
+import g52196.stratego.model.pieces.General;
 import java.util.List;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -21,10 +23,10 @@ public class GameTest {
 
     @Before
     public void setUp() throws Exception {
-        defaultBoard[0][1].put(new Piece(0, RED));
-        defaultBoard[3][2].put(new Piece(9, RED));
-        defaultBoard[4][2].put(new Piece(0, BLUE));
-        defaultBoard[4][1].put(new Piece(9, BLUE));
+        defaultBoard[0][1].put(new Flag(RED));
+        defaultBoard[3][2].put(new General(RED));
+        defaultBoard[4][2].put(new Flag(BLUE));
+        defaultBoard[4][1].put(new General(BLUE));
     }
 
     @Test
@@ -56,6 +58,7 @@ public class GameTest {
     public void testIsOverWhenGameBegin() {
         System.out.println("testIsOverWhenGameBegin");
         Game instance = new Game();
+        instance.initialize();
         assertFalse(instance.isOver());
     }
 
@@ -107,7 +110,7 @@ public class GameTest {
         Game instance = new Game();
         instance.initialize();
         instance.select(0, 1);
-        Piece expResult = new Piece(0, PlayerColor.RED);
+        Piece expResult = new Flag(PlayerColor.RED);
         Piece result = instance.getSelected();
         assertEquals(expResult, result);
     }
@@ -142,9 +145,10 @@ public class GameTest {
     public void testSwapPlayers() {
         System.out.println("testSwapPlayers");
         Game instance = new Game();
+        instance.initialize();
         instance.swapPlayers();
-        Player result = instance.getCurrent();
-        Player expResult = new Player(PlayerColor.BLUE);
+        PlayerColor result = instance.getCurrent().getColor();
+        PlayerColor expResult = new Player(PlayerColor.BLUE).getColor();
         assertEquals(expResult, result);
     }
     
@@ -172,5 +176,13 @@ public class GameTest {
         Game instance = new Game();
         instance.initialize();
         instance.getWinners();
+    }
+    
+    @Test
+    public void testApplyWhenNull() {
+        System.out.println("testApplyWhenNull");
+        Game instance = new Game();
+        instance.initialize();
+        instance.select(3, 2);
     }
 }

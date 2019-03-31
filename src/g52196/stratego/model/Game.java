@@ -74,12 +74,8 @@ public class Game implements Model {
      */
     @Override
     public boolean isOver() {
-        if(!current.hasFlag() || !opponent.hasFlag() || 
-            !hasMoves(current) || !hasMoves(opponent)) {
-            return true;
-        }
-            
-        return false;
+        return !current.hasFlag() || !opponent.hasFlag() || 
+                !hasMoves(current) || !hasMoves(opponent);
     }
     
     /**
@@ -263,7 +259,6 @@ public class Game implements Model {
      */
     public List<Player> getWinners() {
         if (!isOver()) {
-            System.out.println("tese");
             throw new IllegalStateException("The game is not over");
         }
         List<Player> winners = new ArrayList<>();
