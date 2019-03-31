@@ -154,7 +154,7 @@ public class Game implements Model {
     
     /**
      * 
-     * Applies the move passed in paramater and carries out several operations
+     * Applies the move passed in parameter and carries out several operations
      * 
      * <ul>
      *  <li>Removes the piece at the starting position</li>
@@ -199,8 +199,7 @@ public class Game implements Model {
                     board.put(piece, end);
                     
                     opponent.getPieces().remove(board.getSquare(end).getPiece());
-                }
-                if (piece.hasSameRank(board.getSquare(end).getPiece())) {
+                } else if (piece.hasSameRank(board.getSquare(end).getPiece())) {
                     board.remove(end);
                     board.remove(move.getStart());
                     

@@ -179,10 +179,67 @@ public class GameTest {
     }
     
     @Test
+    public void testApplyWhenEndIsEmpty() {
+        System.out.println("testApplyWhenEndIsEmpty");
+        Game instance = new Game();
+        instance.initialize();
+        
+        instance.select(3, 2);
+        instance.apply(instance.getMoves().get(0));
+        
+        Square[][] result = instance.getBoard();
+        Board board = new Board();
+        board.getSquares()[0][1].put(new Flag(RED));
+        board.getSquares()[2][2].put(new General(RED));
+        board.getSquares()[4][2].put(new Flag(BLUE));
+        board.getSquares()[4][1].put(new General(BLUE));
+        
+        assertArrayEquals(board.getSquares(), result);
+    }
+    
+    @Test
+    public void testApplyWhenIsStronger() {
+        System.out.println("testApplyWhenIsStronger");
+        Game instance = new Game();
+        instance.initialize();
+        
+        instance.select(3, 2);
+        instance.apply(instance.getMoves().get(1));
+
+        Square[][] result = instance.getBoard();        
+        Board board = new Board();
+        board.getSquares()[0][1].put(new Flag(RED));
+        board.getSquares()[4][2].put(new General(RED));
+        board.getSquares()[4][1].put(new General(BLUE));
+        
+        assertArrayEquals(board.getSquares(), result);
+    }
+    
+        @Test
+    public void testApplyWhenEndHasSameRank() {
+        System.out.println("testApplyWhenEndHasSameRank");
+        Game instance = new Game();
+        instance.initialize();
+        
+        instance.select(3, 2);
+        instance.apply(instance.getMoves().get(1));
+        
+        instance.select(4, 1);
+        instance.apply(instance.getMoves().get(2));
+        
+        Square[][] result = instance.getBoard();
+        Board board = new Board();
+        board.getSquares()[0][1].put(new Flag(RED));
+        
+        assertArrayEquals(board.getSquares(), result);
+    }
+    
+    @Test(expected = NullPointerException.class)
     public void testApplyWhenNull() {
         System.out.println("testApplyWhenNull");
         Game instance = new Game();
         instance.initialize();
         instance.select(3, 2);
+        instance.apply(null);
     }
 }
