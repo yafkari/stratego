@@ -25,7 +25,7 @@ public class Board {
 
     /**
      * Returns the board
-     * 
+     *
      * @return the board
      */
     Square[][] getSquares() {
@@ -36,7 +36,7 @@ public class Board {
      * Checks the board contains the position passed in parameter
      *
      * @param position the position to check
-     * @return true if the board contains the position
+     * @return {@code true} if the board contains the position
      */
     boolean isInside(Position position) {
 
@@ -85,7 +85,7 @@ public class Board {
      * Checks if the square at the position passed in parameter is empty
      *
      * @param position the position to be checked
-     * @return true if the square at the position passed in parameter is null
+     * @return {@code true} if the square at the position in parameter is null
      * @throws IllegalArgumentException if the given position is not on the
      * board
      */
@@ -98,12 +98,12 @@ public class Board {
     }
 
     /**
-     * Checks if the square at the position passed in parameter is 
-     * owned by the player with the given color
-     * 
+     * Checks if the square at the position passed in parameter is owned by the
+     * player with the given color
+     *
      * @param position the position of the square
      * @param color the color of the player
-     * @return true if the square is owned by the given color otherwise false
+     * @return {@code true} if the square is owned by the given color
      */
     public boolean isMyOwn(Position position, PlayerColor color) {
         if (!getSquare(position).isFree()) {
@@ -111,10 +111,10 @@ public class Board {
         }
         return false;
     }
-    
+
     /**
      * Removes a piece from the board
-     * 
+     *
      * @param position the position of the piece to remove
      * @throws IllegalArgumentException if the given position is not on the
      * board
@@ -124,19 +124,19 @@ public class Board {
             throw new IllegalArgumentException(
                     "The position is not on the board");
         }
-        
+
         if (!getSquare(position).isFree()) {
             this.getSquares()[position.getRow()][position.getColumn()] = new Square();
         }
     }
-    
+
     /**
      * @param player the player for who we look for the taken squares
      * @return the list of squares owned by the player passed in parameter
      */
     public List<Position> getTakenSquare(Player player) {
         List<Position> takenSquares = new ArrayList<>();
-        
+
         for (int i = 0; i < getSquares().length; i++) {
             for (int j = 0; j < getSquares()[i].length; j++) {
                 if (getSquares()[i][j].isMyOwn(player.getColor())) {
@@ -144,7 +144,7 @@ public class Board {
                 }
             }
         }
-        
+
         return takenSquares;
     }
 }

@@ -11,13 +11,13 @@ import java.util.Objects;
  * Represents a player
  */
 public class Player {
+
     private PlayerColor color;
     private List<Piece> pieces;
-    
+
     /**
-     * Creates a player with no pieces
-     * with a color passed in parameter
-     * 
+     * Creates a player with no pieces with a color passed in parameter
+     *
      * @param color
      * @throws NullPointerException if color equals null
      */
@@ -28,47 +28,52 @@ public class Player {
         this.color = color;
         this.pieces = new ArrayList<>();
     }
-    
+
     /**
      * Returns the color of the player
-     * 
+     *
      * @return the color of the player
      */
     public PlayerColor getColor() {
         return color;
     }
-    
+
     /**
      * Returns the list of pieces of the player
-     * 
+     *
      * @return the list of pieces of the player
      */
     public List<Piece> getPieces() {
         return pieces;
     }
-    
+
     /**
-     * Add a piece passed in parameter
-     * to the list of pieces of the player
-     * 
+     * Add a piece passed in parameter to the list of pieces of the player
+     *
      * @param piece the piece to be added to the list
      */
     public void addPiece(Piece piece) {
         pieces.add(piece);
     }
-    
+
     /**
      * Checks if the player still has his flag
-     * 
-     * @return true if the current player has a flag, else false
+     *
+     * @return {@code true} if the current player has a flag
      */
     public boolean hasFlag() {
-        for(Piece piece: pieces) {
-            if (piece.hasSameRank(new Flag(PlayerColor.RED))) {
-                return true;
-            }
+        return pieces.contains(new Flag(getColor()));
+    }
+
+    /**
+     * Removes the piece passed in parameter
+     *
+     * @param piece the piece to remove
+     */
+    public void remove(Piece piece) {
+        if (pieces.contains(piece)) {
+            pieces.remove(piece);
         }
-        return false;
     }
 
     @Override

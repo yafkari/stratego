@@ -8,38 +8,37 @@ import java.util.Objects;
  * Represents a cell on the game board
  */
 public class Square {
+
     private Piece piece;
-    
+
     /**
      * Creates an empty square
      */
     public Square() {
         piece = null;
     }
-    
+
     /**
      * Returns the piece in the square
-     * 
+     *
      * @return the piece in the square
      */
     public Piece getPiece() {
         return piece;
     }
-    
+
     /**
      * Checks if the piece is empty
-     * 
+     *
      * @return if the piece is empty
      */
     public boolean isFree() {
         return piece == null;
     }
-    
+
     /**
-     * Add a piece to the square if
-     * the piece is not null
-     * and the square is free
-     * 
+     * Add a piece to the square if the piece is not null and the square is free
+     *
      * @param piece the piece to be added
      * @throws NullPointerException if the piece passed in parameter is null
      * @throws IllegalStateException if the square is not empty
@@ -53,13 +52,13 @@ public class Square {
             this.piece = piece;
         }
     }
-    
+
     /**
-     * Checks if the current piece has 
-     * the same color than the player
-     * 
+     * Checks if the current piece has the same color than the player
+     *
      * @param color the color of the current piece
-     * @return true if the piece has the same color than the player otherwise false
+     * @return true if the piece has the same color than the player otherwise
+     * false
      */
     public boolean isMyOwn(PlayerColor color) {
         if (!isFree()) {
@@ -67,7 +66,7 @@ public class Square {
         }
         return false;
     }
-    
+
     @Override
     public int hashCode() {
         return Objects.hash(piece);

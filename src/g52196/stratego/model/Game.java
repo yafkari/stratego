@@ -69,7 +69,7 @@ public class Game implements Model {
      * <li>The game is done if a player has lost his flag</li>
      * </ul>
      *
-     * @return true if it is the end of the game.
+     * @return {@code true} if it is the end of the game.
      */
     @Override
     public boolean isOver() {
@@ -189,29 +189,30 @@ public class Game implements Model {
 
         Position end = move.getEnd();
         Piece piece = move.getPiece();
+        Piece targetPiece = board.getSquare(end).getPiece();
 
         if (board.isInside(end)
                 || board.getSquare(move.getStart()).getPiece() == piece
                 || board.getSquare(end).getPiece().getColor() != piece.getColor()) {
 
             board.remove(move.getStart());
+            current.remove(piece);
 
             if (board.isFree(end)) {
                 board.put(piece, end);
+                current.addPiece(piece);
             } else {
-                if (piece.isStronger(board.getSquare(end).getPiece())) {
+                if (piece.isStronger(targetPiece)) {
                     board.remove(end);
                     board.put(piece, end);
 
-                    opponent.getPieces().remove(board.getSquare(end).getPiece());
-                } else if (piece.hasSameRank(board.getSquare(end).getPiece())) {
+                    opponent.remove(targetPiece);
+                } else if (piece.hasSameRank(targetPiece)) {
                     board.remove(end);
                     board.remove(move.getStart());
 
-                    current
-                            .getPieces()
-                            .remove(board.getSquare(move.getStart()).getPiece());
-                    opponent.getPieces().remove(board.getSquare(end).getPiece());
+                    current.remove(piece);
+                    opponent.remove(targetPiece);
 
                 }
             }
@@ -244,7 +245,7 @@ public class Game implements Model {
      * Checks if the player has piece that can move
      *
      * @param player the player to check if he has a piece he can move
-     * @return true if the player can move a piece
+     * @return {@code true} if the player can move a piece
      */
     public boolean hasMoves(Player player) {
         Position tmp = selected;

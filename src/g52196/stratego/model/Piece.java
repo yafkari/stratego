@@ -4,17 +4,18 @@ import java.util.Objects;
 
 /**
  * @author 52196
- * 
+ *
  * Represents military units.
  */
 public class Piece {
+
     private int rank;
     private PlayerColor color;
-    
+
     /**
-     * Creates a Piece with a rank and a color that
-     * have been passed in parameter.
-     * 
+     * Creates a Piece with a rank and a color that have been passed in
+     * parameter.
+     *
      * @param rank the rank of the piece
      * @param color the color of the piece
      * @throws IllegalArgumentException if the rank is negative
@@ -26,43 +27,41 @@ public class Piece {
         this.rank = rank;
         this.color = color;
     }
-    
+
     /**
      * Returns the rank of the piece
-     * 
+     *
      * @return the rank of the piece
      */
     public int getRank() {
         return rank;
     }
-    
+
     /**
      * Returns the color of the piece
-     * 
+     *
      * @return the color of the piece
      */
     public PlayerColor getColor() {
         return color;
     }
-    
+
     /**
-     * Checks if the current piece is 
-     * strictly greater than the other one
-     * 
+     * Checks if the current piece is strictly greater than the other one
+     *
      * @param other the piece to be compared to the current piece
-     * @return true if the current piece is stricly greater 
-     * than the other one, else false
+     * @return {@code true} if the current piece is stricly greater than the
+     * other one
      */
     public boolean isStronger(Piece other) {
         return rank > other.rank;
     }
-    
+
     /**
-     * Checks if the current piece equals 
-     * to the other one passed in paramater
-     * 
+     * Checks if the current piece equals to the other one passed in paramater
+     *
      * @param other the piece to be compared to the current piece
-     * @return true if the pieces have the same rank, else false
+     * @return {@code true} if the pieces have the same rank
      */
     public boolean hasSameRank(Piece other) {
         return rank == other.rank;

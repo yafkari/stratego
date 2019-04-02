@@ -6,8 +6,8 @@ import java.util.List;
  * Model of Stratego.
  *
  * @see <a href="https://en.wikipedia.org/wiki/Facade_pattern">
- Model pattern
- </a>
+ * Model pattern
+ * </a>
  * @see
  * <a href="https://fr.wikipedia.org/wiki/Fa%C3%A7ade_(patron_de_conception)">
  * Façade (patron de conception)
@@ -15,7 +15,7 @@ import java.util.List;
  * @author EsiProf, 52196
  */
 public interface Model {
-    
+
     /**
      * Initializes the stratego game with a default board.
      */
@@ -42,42 +42,42 @@ public interface Model {
      * @return the board.
      */
     Square[][] getBoard();
-    
+
     /**
      * Allows the user to select a piece
-     * 
+     *
      * @param row the row where the piece is located
-     * @param column the column where the piece is located 
+     * @param column the column where the piece is located
      */
     void select(int row, int column);
-    
+
     /**
      * @return the selected piece
      */
     Piece getSelected();
-    
+
     /**
      * @return the list of possible moves
      */
     List<Move> getMoves();
-    
+
     /**
      * Allows the user to apply a movement to a piece
-     * 
+     *
      * @param move the movement to be applied
      */
     void apply(Move move);
-    
+
     /**
      * Returns the current player
-     * 
+     *
      * @return the current player
      */
     Player getCurrent();
-    
+
     /**
      * Returns the list of winners
-     * 
+     *
      * @return the list of winners
      */
     List<Player> getWinners();

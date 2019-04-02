@@ -124,15 +124,20 @@ public class View {
     }
     
     /**
-     * Indicates to the player that the game is over
+     * Indicates to the players that the game is over
      */
     public void displayOver(List<Player> winners) {
         info("GAME OVER");
-        info("Congratulations to :");
-        for(Player player : winners) {
-            System.out.println("The " + 
-                    player.getColor().name().toLowerCase() + 
-                    " player !");
+        
+        if (winners.size() > 0) {
+            info("Congratulations to :");
+            for(Player player : winners) {
+                System.out.println("The " + 
+                        player.getColor().name().toLowerCase() + 
+                        " player win !");
+            }
+        } else {
+            System.out.println("Nobody wins !");
         }
     }
     
