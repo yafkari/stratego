@@ -54,12 +54,10 @@ public class Controller {
                 try {
                     game.getSelected();
                     view.displayMoves(game.getMoves());
-
                 } catch (NullPointerException e) {
-                    System.out.println("You haven't selected a piece yet !");
+                    System.out.println("You have not selected a piece yet !");
                     System.out.println("Please retry");
                 }
-
             }
             if (command.length() > 9 && command.substring(0, 6).equalsIgnoreCase("select")) {
                 String row = command.substring(7, 8);
@@ -87,8 +85,6 @@ public class Controller {
             if (command.equalsIgnoreCase("quit")) {
                 view.displayOver(new ArrayList<>());
                 System.exit(0);
-            } else {
-                System.out.println("Unknown command...");
             }
         }
         view.displayOver(game.getWinners());

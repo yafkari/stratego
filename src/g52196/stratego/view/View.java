@@ -79,7 +79,7 @@ public class View {
      * @return the chosen command
      */
     public String askCommand() {
-        info("Please, enter a command: \n");
+        info("Please, enter a command:");
         
         return in.nextLine().toLowerCase();
     }
@@ -96,7 +96,7 @@ public class View {
             System.out.print(" Row# " + i + " ");
             for (Square column : squares[i]) {
                 if (column.isFree()) {
-                    System.out.print("| * |");
+                    System.out.print("| __ |");
                 } else {
                     if (column.getPiece().getColor() == PlayerColor.BLUE) {
                         System.out.print("| " + ANSI_BLUE + column + ANSI_RESET + " |");
