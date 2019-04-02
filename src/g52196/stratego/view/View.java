@@ -90,12 +90,8 @@ public class View {
      * @param squares the board to be displayed
      */
     public void displayBoard(Square[][] squares) {
+        displayHeaderBoard(squares.length);
         
-        System.out.print("\n Col#   ");
-        for (int i = 0; i < squares[0].length; i++) {
-            System.out.print("| "+i+" |");
-        }
-        System.out.println("\n ===========================");
         for (int i = 0; i < squares.length; i++) {
             System.out.print(" Row# " + i + " ");
             for (Square column : squares[i]) {
@@ -115,6 +111,19 @@ public class View {
     }
     
     /**
+     * Displays the header of the board
+     * 
+     * @param squares the 
+     */
+    public void displayHeaderBoard(int size) {
+        System.out.print("\n Col#   ");
+        for (int i = 0; i < size; i++) {
+            System.out.print("| "+i+" |");
+        }
+        System.out.println("\n ===========================");
+    }
+    
+    /**
      * Indicates to the player that the game is over
      */
     public void displayOver(List<Player> winners) {
@@ -122,7 +131,7 @@ public class View {
         info("Congratulations to :");
         for(Player player : winners) {
             System.out.println("The " + 
-                    player.getColor().toString().toLowerCase() + 
+                    player.getColor().name().toLowerCase() + 
                     " player !");
         }
     }

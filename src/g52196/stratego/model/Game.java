@@ -79,6 +79,8 @@ public class Game implements Model {
     }
     
     /**
+     * Returns the squares of the board
+     * 
      * @return the squares of the board
      */
     @Override
@@ -114,6 +116,8 @@ public class Game implements Model {
     }
     
     /**
+     * Returns the selected piece
+     * 
      * @return the selected piece
      * @throws NullPointerException if the selected piece is empty
      */
@@ -126,6 +130,8 @@ public class Game implements Model {
     }
     
     /**
+     * Returns the possible moves
+     * 
      * @return the possible moves
      */
     @Override
@@ -216,7 +222,7 @@ public class Game implements Model {
     }
     
     /**
-     * Swap the players
+     * Swaps the players
      */
     public void swapPlayers() {
         if (hasMoves(opponent)) {
@@ -227,6 +233,8 @@ public class Game implements Model {
     }
     
     /**
+     * Returns the current player
+     * 
      * @return the current player
      */
     public Player getCurrent() {
@@ -253,6 +261,8 @@ public class Game implements Model {
     }
     
     /**
+     * Returns the list of winners
+     * 
      * @return the list of winners
      * @throws IllegalStateException if the game is not over
      */

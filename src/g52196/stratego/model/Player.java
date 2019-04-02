@@ -12,12 +12,11 @@ import java.util.Objects;
  */
 public class Player {
     private PlayerColor color;
-    private ArrayList<Piece> pieces;
+    private List<Piece> pieces;
     
     /**
-     * Creates a player with a color
-     * passed in parameter and initialize
-     * the list of pieces.
+     * Creates a player with no pieces
+     * with a color passed in parameter
      * 
      * @param color
      * @throws NullPointerException if color equals null
@@ -31,6 +30,8 @@ public class Player {
     }
     
     /**
+     * Returns the color of the player
+     * 
      * @return the color of the player
      */
     public PlayerColor getColor() {
@@ -38,6 +39,8 @@ public class Player {
     }
     
     /**
+     * Returns the list of pieces of the player
+     * 
      * @return the list of pieces of the player
      */
     public List<Piece> getPieces() {
@@ -55,6 +58,8 @@ public class Player {
     }
     
     /**
+     * Checks if the player still has his flag
+     * 
      * @return true if the current player has a flag, else false
      */
     public boolean hasFlag() {
@@ -68,10 +73,7 @@ public class Player {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.color);
-        hash = 23 * hash + Objects.hashCode(this.pieces);
-        return hash;
+        return Objects.hash(color, pieces);
     }
 
     @Override

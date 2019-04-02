@@ -27,6 +27,8 @@ public class Move {
     }
 
     /**
+     * Returns the piece to move
+     * 
      * @return the piece to move
      */
     public Piece getPiece() {
@@ -34,6 +36,8 @@ public class Move {
     }
 
     /**
+     * Returns the starting position
+     * 
      * @return the starting position
      */
     public Position getStart() {
@@ -41,6 +45,8 @@ public class Move {
     }
 
     /**
+     * Returns the position of arrival
+     * 
      * @return the position of arrival
      */
     public Position getEnd() {

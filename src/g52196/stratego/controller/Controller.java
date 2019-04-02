@@ -74,7 +74,8 @@ public class Controller {
                 } catch (NumberFormatException err) {
                     System.out.println("Please enter numbers !");
                     System.out.println("Example: select 1 2");
-
+                } catch (IllegalArgumentException err) {
+                    System.out.println("You are trying to select a piece that is not yours");
                 }
             }
             if (command.length() > 6 && command.substring(0,5).equalsIgnoreCase("apply")) {

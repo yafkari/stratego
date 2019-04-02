@@ -69,10 +69,16 @@ public interface Model {
     void apply(Move move);
     
     /**
+     * Returns the current player
+     * 
      * @return the current player
      */
     Player getCurrent();
     
-    
+    /**
+     * Returns the list of winners
+     * 
+     * @return the list of winners
+     */
     List<Player> getWinners();
 }

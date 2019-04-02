@@ -28,6 +28,8 @@ public class Piece {
     }
     
     /**
+     * Returns the rank of the piece
+     * 
      * @return the rank of the piece
      */
     public int getRank() {
@@ -35,6 +37,8 @@ public class Piece {
     }
     
     /**
+     * Returns the color of the piece
+     * 
      * @return the color of the piece
      */
     public PlayerColor getColor() {
@@ -87,10 +91,7 @@ public class Piece {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 41 * hash + this.rank;
-        hash = 41 * hash + Objects.hashCode(this.color);
-        return hash;
+        return Objects.hash(rank, color);
     }
 
     @Override

@@ -15,15 +15,17 @@ public class Board {
     /**
      * Creates empty squares on the board with i rows and j columns
      */
-    Board() {
-        for (int i = 0; i < squares.length; i++) {
-            for (int j = 0; j < squares[i].length; j++) {
-                squares[i][j] = new Square();
+    public Board() {
+        for (int row = 0; row < squares.length; row++) {
+            for (int column = 0; column < squares[row].length; column++) {
+                squares[row][column] = new Square();
             }
         }
     }
 
     /**
+     * Returns the board
+     * 
      * @return the board
      */
     Square[][] getSquares() {
@@ -60,9 +62,8 @@ public class Board {
         if (!isInside(position)) {
             throw new IllegalArgumentException(
                     "The position is not on the board");
-        } else {
-            return squares[position.getRow()][position.getColumn()];
         }
+        return squares[position.getRow()][position.getColumn()];
     }
 
     /**
@@ -76,9 +77,8 @@ public class Board {
         if (!isInside(position)) {
             throw new IllegalArgumentException(
                     "The position is not on the board");
-        } else {
-            squares[position.getRow()][position.getColumn()].put(piece);
         }
+        getSquare(position).put(piece);
     }
 
     /**

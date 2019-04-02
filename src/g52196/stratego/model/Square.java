@@ -13,11 +13,13 @@ public class Square {
     /**
      * Creates an empty square
      */
-    Square() {
+    public Square() {
         piece = null;
     }
     
     /**
+     * Returns the piece in the square
+     * 
      * @return the piece in the square
      */
     public Piece getPiece() {
@@ -25,6 +27,8 @@ public class Square {
     }
     
     /**
+     * Checks if the piece is empty
+     * 
      * @return if the piece is empty
      */
     public boolean isFree() {
@@ -66,9 +70,7 @@ public class Square {
     
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.piece);
-        return hash;
+        return Objects.hash(piece);
     }
 
     @Override

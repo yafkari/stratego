@@ -17,14 +17,18 @@ public enum Direction {
     }
     
     /**
-     * @return the row movement of the direction
+     * Returns the movement on the y-axis of the direction
+     * 
+     * @return the movement on the y-axis of the direction
      */
     public int getRow() {
         return row;
     }
 
     /**
-     * @return the column movement of the direction
+     * Returns the movement on the x-axis of the direction
+     * 
+     * @return the movement on the x-axis of the direction
      */
     public int getColumn() {
         return column;

@@ -1,5 +1,7 @@
 package g52196.stratego.model;
 
+import java.util.Objects;
+
 /**
  * @author 52196
  *
@@ -14,8 +16,8 @@ public class Position {
      * Creates a position with a row and a column
      * passed in parameter
      * 
-     * @param row the position in y
-     * @param column the position in x
+     * @param row the position in y-axis
+     * @param column the position in x-axis
      */
     public Position(int row, int column) {
         this.row = row;
@@ -23,6 +25,8 @@ public class Position {
     }
 
     /**
+     * Returns the position in the y-axis of the position
+     * 
      * @return the row of the position
      */
     public int getRow() {
@@ -30,6 +34,8 @@ public class Position {
     }
     
     /**
+     * Returns the position in the x-axis of the position
+     * 
      * @return the column of the position
      */
     public int getColumn() {
@@ -71,10 +77,7 @@ public class Position {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 61 * hash + this.row;
-        hash = 61 * hash + this.column;
-        return hash;
+        return Objects.hash(row, column);
     }
 
     @Override
