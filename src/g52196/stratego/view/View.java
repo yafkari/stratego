@@ -19,7 +19,7 @@ public class View {
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String PURPLE = "\u001B[35m";
     /**
      * Initialize the Scanner
      */
@@ -28,12 +28,12 @@ public class View {
     }
     
     /**
-     * Displays a message passed in parameter in cyan
+     * Displays a message passed in parameter in blue
      * 
      * @param message the message that will be displayed
      */
     private void info(String message) {
-        System.out.println( ANSI_CYAN +
+        System.out.println( ANSI_BLUE +
             message
         + ANSI_RESET);
     }
