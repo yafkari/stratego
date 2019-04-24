@@ -10,6 +10,11 @@ import g52196.stratego.model.PlayerColor;
  */
 public class General extends Piece {
 
+    /**
+     * Creates a General with a color passed in parameter
+     *
+     * @param color the color of the general
+     */
     public General(PlayerColor color) {
         super(9, color);
     }

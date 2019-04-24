@@ -16,10 +16,9 @@ import java.util.Scanner;
 public class View {
     private Scanner in;
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String PURPLE = "\u001B[35m";
+
     /**
      * Initialize the Scanner
      */
@@ -99,9 +98,11 @@ public class View {
                     System.out.print("| __ |");
                 } else {
                     if (column.getPiece().getColor() == PlayerColor.BLUE) {
-                        System.out.print("| " + ANSI_BLUE + column + ANSI_RESET + " |");
+                        System.out.print("| " + 
+                                ANSI_BLUE + column + ANSI_RESET + " |");
                     } else {
-                        System.out.print("| " + ANSI_RED + column + ANSI_RESET + " |");
+                        System.out.print("| " + 
+                                ANSI_RED + column + ANSI_RESET + " |");
                     }
                 }
             }
@@ -113,7 +114,7 @@ public class View {
     /**
      * Displays the header of the board
      * 
-     * @param squares the 
+     * @param size the number of columns to be displayed
      */
     public void displayHeaderBoard(int size) {
         System.out.print("\n Col#   ");

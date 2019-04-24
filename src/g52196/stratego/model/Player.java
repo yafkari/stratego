@@ -16,10 +16,10 @@ public class Player {
     private List<Piece> pieces;
 
     /**
-     * Creates a player with no pieces with a color passed in parameter
+     * Creates a player of color passed in parameter and not having pieces
      *
-     * @param color
-     * @throws NullPointerException if color equals null
+     * @param color the color of the player
+     * @throws NullPointerException if the color passed in parameter is null
      */
     public Player(PlayerColor color) {
         if (color == null) {
@@ -77,11 +77,6 @@ public class Player {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(color, pieces);
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -100,5 +95,10 @@ public class Player {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, pieces);
     }
 }

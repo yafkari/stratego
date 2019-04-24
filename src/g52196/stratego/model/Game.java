@@ -20,7 +20,7 @@ public class Game implements Model {
     /**
      * Creates a game with a player and an opponent
      *
-     * The player is red The opponent is blue
+     * The player is red and the opponent is blue
      */
     public Game() {
         current = new Player(PlayerColor.RED);
@@ -63,7 +63,7 @@ public class Game implements Model {
     }
 
     /**
-     * Declares if it's the end of the game.
+     * Declares if the game is finished
      * <ul>
      * <li>The game is done if a player can't move</li>
      * <li>The game is done if a player has lost his flag</li>

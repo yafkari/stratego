@@ -10,6 +10,11 @@ import g52196.stratego.model.PlayerColor;
  */
 public class Flag extends Piece {
 
+    /**
+     * Creates a Flag with a color passed in parameter
+     *
+     * @param color the color of the flag
+     */
     public Flag(PlayerColor color) {
         super(0, color);
     }
@@ -18,6 +23,4 @@ public class Flag extends Piece {
     public String toString() {
         return "FL";
     }
-    
-    
 }

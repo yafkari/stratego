@@ -37,7 +37,8 @@ public class Square {
     }
 
     /**
-     * Add a piece to the square if the piece is not null and the square is free
+     * Adds a piece to the square if the piece is not null and the square is
+     * free
      *
      * @param piece the piece to be added
      * @throws NullPointerException if the piece passed in parameter is null
@@ -68,11 +69,6 @@ public class Square {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(piece);
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -86,6 +82,11 @@ public class Square {
         final Square other = (Square) obj;
 
         return Objects.equals(this.piece, other.piece);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(piece);
     }
 
     @Override

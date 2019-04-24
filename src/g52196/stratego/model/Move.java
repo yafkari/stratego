@@ -12,6 +12,9 @@ public class Move {
     private Position end;
 
     /**
+     * Creates a move that have a piece, a start and a end position received in
+     * parameter
+     *
      * @param piece the piece to move
      * @param start the starting position
      * @param end the position of arrival

@@ -6,14 +6,14 @@ import java.util.List;
 /**
  * @author 52196
  *
- * Represents the game board
+ * Represents the board of the game The board has 5 rows and 4 columns
  */
 public class Board {
 
     private Square[][] squares = new Square[5][4];
 
     /**
-     * Creates empty squares on the board with i rows and j columns
+     * Creates empty squares on the board with 5 rows and 4 columns
      */
     public Board() {
         for (int row = 0; row < squares.length; row++) {
@@ -33,18 +33,16 @@ public class Board {
     }
 
     /**
-     * Checks the board contains the position passed in parameter
+     * Checks if the board contains the position passed in parameter
      *
      * @param position the position to check
      * @return {@code true} if the board contains the position
      */
     boolean isInside(Position position) {
 
-        if (position.getRow() < 0 || position.getRow() > squares.length - 1) {
-            return false;
-        }
-
-        if (position.getColumn() < 0 || position.getColumn() > squares[position.getRow()].length - 1) {
+        if (position.getRow() < 0 || position.getRow() > squares.length - 1
+                || position.getColumn() < 0
+                || position.getColumn() > squares[position.getRow()].length - 1) {
             return false;
         }
 
@@ -131,6 +129,8 @@ public class Board {
     }
 
     /**
+     * Returns the list of squares owned by the player passed in parameter
+     * 
      * @param player the player for who we look for the taken squares
      * @return the list of squares owned by the player passed in parameter
      */
