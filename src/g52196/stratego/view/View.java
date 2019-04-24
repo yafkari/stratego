@@ -130,15 +130,13 @@ public class View {
     public void displayOver(List<Player> winners) {
         info("GAME OVER");
         
-        if (winners.size() > 0) {
+        if (winners != null) {
             info("Congratulations to :");
             for(Player player : winners) {
                 System.out.println("The " + 
                         player.getColor().name().toLowerCase() + 
                         " player win !");
             }
-        } else {
-            System.out.println("Nobody wins !");
         }
     }
     

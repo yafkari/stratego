@@ -63,6 +63,25 @@ public class GameTest {
     }
 
     @Test
+    public void testIsOverWhenPlayerLostFlag() {
+        System.out.println("testIsOverWhenPlayerLostFlag");
+        Game instance = new Game();
+        instance.initialize();
+        instance.getCurrent().remove(new Flag(instance.getCurrent().getColor()));
+        assertTrue(instance.isOver());
+    }
+
+    @Test
+    public void testIsOverWhenPlayerHasNoMoves() {
+        System.out.println("testIsOverWhenPlayerHasNoMoves");
+        Game instance = new Game();
+        instance.initialize();
+        instance.getCurrent().remove(new General(PlayerColor.RED));
+        instance.getCurrent().remove(new Flag(PlayerColor.RED));
+        assertTrue(instance.isOver());
+    }
+
+    @Test
     public void testGetBoardWhenGameBegin() {
         System.out.println("testGetBoardWhenGameBegin");
         Game instance = new Game();
@@ -71,7 +90,7 @@ public class GameTest {
         Square[][] result = instance.getBoard();
         assertArrayEquals(expResult, result);
     }
-    
+
     @Test
     public void testSelect() {
         System.out.println("testSelect");
@@ -79,7 +98,7 @@ public class GameTest {
         instance.initialize();
         instance.select(0, 1);
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void testSelectWhenNotOnBoard() {
         System.out.println("testSelectWhenNotOnBoard");
@@ -87,7 +106,7 @@ public class GameTest {
         instance.initialize();
         instance.select(22, 1);
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void testSelectWhenSquareEmpty() {
         System.out.println("testSelectWhenSquareEmpty");
@@ -103,7 +122,7 @@ public class GameTest {
         instance.initialize();
         instance.select(4, 2);
     }
-    
+
     @Test
     public void testGetSelected() {
         System.out.println("testGetSelected");
@@ -114,7 +133,7 @@ public class GameTest {
         Piece result = instance.getSelected();
         assertEquals(expResult, result);
     }
-    
+
     @Test(expected = NullPointerException.class)
     public void testGetSelectedWhenNull() {
         System.out.println("testGetSelectedWhenNull");
@@ -122,7 +141,7 @@ public class GameTest {
         instance.initialize();
         instance.getSelected();
     }
-    
+
     @Test
     public void testGetMoves() {
         System.out.println("testGetMoves");
@@ -132,7 +151,7 @@ public class GameTest {
         List<Move> result = instance.getMoves();
         assertEquals(4, result.size());
     }
-    
+
     @Test(expected = NullPointerException.class)
     public void testGetMovesWhenSelectedIsNull() {
         System.out.println("testGetMovesWhenSelectedIsNull");
@@ -140,7 +159,7 @@ public class GameTest {
         instance.initialize();
         instance.getMoves();
     }
-    
+
     @Test
     public void testSwapPlayers() {
         System.out.println("testSwapPlayers");
@@ -151,7 +170,7 @@ public class GameTest {
         PlayerColor expResult = new Player(PlayerColor.BLUE).getColor();
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testGetCurrent() {
         System.out.println("testGetCurrent");
@@ -160,7 +179,18 @@ public class GameTest {
         Player expResult = new Player(PlayerColor.RED);
         assertEquals(expResult, result);
     }
-    
+
+    @Test
+    public void testGetCurrentAfterSwap() {
+        System.out.println("testGetCurrentAfterSwap");
+        Game instance = new Game();
+        instance.initialize();
+        instance.swapPlayers();
+        PlayerColor result = instance.getCurrent().getColor();
+        PlayerColor expResult = new Player(PlayerColor.BLUE).getColor();
+        assertEquals(expResult, result);
+    }
+
     @Test
     public void testHasMoves() {
         System.out.println("testHasMoves");
@@ -169,7 +199,7 @@ public class GameTest {
         Boolean result = instance.hasMoves(new Player(PlayerColor.RED));
         assertTrue(result);
     }
-    
+
     @Test(expected = IllegalStateException.class)
     public void testGetWinnersWhenNotOver() {
         System.out.println("testGetWinnersWhenNotOver");
@@ -177,63 +207,72 @@ public class GameTest {
         instance.initialize();
         instance.getWinners();
     }
-    
+
+    @Test
+    public void testGetWinnersWhenOnePlayerWin() {
+        System.out.println("testGetWinnersWhenOnePlayerWin");
+        Game instance = new Game();
+        instance.initialize();
+        instance.getCurrent().remove(new Flag(PlayerColor.RED));
+        assertTrue(PlayerColor.BLUE == instance.getWinners().get(0).getColor());
+    }
+
     @Test
     public void testApplyWhenEndIsEmpty() {
         System.out.println("testApplyWhenEndIsEmpty");
         Game instance = new Game();
         instance.initialize();
-        
+
         instance.select(3, 2);
         instance.apply(instance.getMoves().get(0));
-        
+
         Square[][] result = instance.getBoard();
         Board board = new Board();
         board.getSquares()[0][1].put(new Flag(RED));
         board.getSquares()[2][2].put(new General(RED));
         board.getSquares()[4][2].put(new Flag(BLUE));
         board.getSquares()[4][1].put(new General(BLUE));
-        
+
         assertArrayEquals(board.getSquares(), result);
     }
-    
+
     @Test
     public void testApplyWhenIsStronger() {
         System.out.println("testApplyWhenIsStronger");
         Game instance = new Game();
         instance.initialize();
-        
+
         instance.select(3, 2);
         instance.apply(instance.getMoves().get(1));
 
-        Square[][] result = instance.getBoard();        
+        Square[][] result = instance.getBoard();
         Board board = new Board();
         board.getSquares()[0][1].put(new Flag(RED));
         board.getSquares()[4][2].put(new General(RED));
         board.getSquares()[4][1].put(new General(BLUE));
-        
+
         assertArrayEquals(board.getSquares(), result);
     }
-    
-        @Test
+
+    @Test
     public void testApplyWhenEndHasSameRank() {
         System.out.println("testApplyWhenEndHasSameRank");
         Game instance = new Game();
         instance.initialize();
-        
+
         instance.select(3, 2);
         instance.apply(instance.getMoves().get(1));
-        
+
         instance.select(4, 1);
         instance.apply(instance.getMoves().get(2));
-        
+
         Square[][] result = instance.getBoard();
         Board board = new Board();
         board.getSquares()[0][1].put(new Flag(RED));
-        
+
         assertArrayEquals(board.getSquares(), result);
     }
-    
+
     @Test(expected = NullPointerException.class)
     public void testApplyWhenNull() {
         System.out.println("testApplyWhenNull");

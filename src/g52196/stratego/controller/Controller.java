@@ -52,7 +52,6 @@ public class Controller {
 
             if (command.equalsIgnoreCase("moves")) {
                 try {
-                    game.getSelected();
                     view.displayMoves(game.getMoves());
                 } catch (NullPointerException e) {
                     System.out.println("You have not selected a piece yet !");
@@ -83,7 +82,10 @@ public class Controller {
                 }
             }
             if (command.equalsIgnoreCase("quit")) {
-                view.displayOver(new ArrayList<>());
+                view.displayOver(null);
+                System.out.println("The " + 
+                        game.getCurrent().getColor().toString().toLowerCase() + 
+                        " player has decided to give up !");
                 System.exit(0);
             }
         }

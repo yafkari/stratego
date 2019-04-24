@@ -132,6 +132,7 @@ public class Game implements Model {
      * Returns the possible moves
      *
      * @return the possible moves
+     * @throws NullPointerException if the selected piece is null
      */
     @Override
     public List<Move> getMoves() {
