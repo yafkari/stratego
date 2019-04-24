@@ -232,7 +232,7 @@ public class BoardTest {
         Board instance = new Board();
         instance.isInside(null);
     }
-    
+
     @Test
     public void testIsFreeTrue() {
         System.out.println("testIsFreeTrue");
@@ -241,42 +241,42 @@ public class BoardTest {
         boolean result = instance.isFree(new Position(2, 1));
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testIsFreeFalse() {
         System.out.println("testIsFreeFalse");
         Board instance = new Board();
-        instance.put(new Piece(2,PlayerColor.RED), new Position(2, 1));
+        instance.put(new Piece(2, PlayerColor.RED), new Position(2, 1));
         boolean expResult = false;
         boolean result = instance.isFree(new Position(2, 1));
         assertEquals(expResult, result);
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void testIsFreeWhenIsNotOnBoard() {
         System.out.println("testIsFreeIsNotOnBoard");
         Board instance = new Board();
-        instance.put(new Piece(2,PlayerColor.RED), new Position(22, 1));
+        instance.put(new Piece(2, PlayerColor.RED), new Position(22, 1));
         instance.isFree(new Position(22, 1));
     }
-    
+
     @Test
     public void testIsMyOwnTrue() {
         System.out.println("testIsMyOwnTrue");
         Board instance = new Board();
-        instance.put(new Piece(1, PlayerColor.BLUE), new Position(2,1));
+        instance.put(new Piece(1, PlayerColor.BLUE), new Position(2, 1));
         boolean expResult = true;
-        boolean result = instance.isMyOwn(new Position(2, 1),PlayerColor.BLUE);
+        boolean result = instance.isMyOwn(new Position(2, 1), PlayerColor.BLUE);
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testIsMyOwnFalse() {
         System.out.println("testIsMyOwnFalse");
         Board instance = new Board();
-        instance.put(new Piece(1, PlayerColor.BLUE), new Position(2,1));
+        instance.put(new Piece(1, PlayerColor.BLUE), new Position(2, 1));
         boolean expResult = false;
-        boolean result = instance.isMyOwn(new Position(2, 1),PlayerColor.RED);
+        boolean result = instance.isMyOwn(new Position(2, 1), PlayerColor.RED);
         assertEquals(expResult, result);
     }
 
@@ -285,10 +285,10 @@ public class BoardTest {
         System.out.println("testIsMyOwnEmpty");
         Board instance = new Board();
         boolean expResult = false;
-        boolean result = instance.isMyOwn(new Position(2, 1),PlayerColor.RED);
+        boolean result = instance.isMyOwn(new Position(2, 1), PlayerColor.RED);
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testRemove() {
         System.out.println("testRemove");
@@ -298,24 +298,40 @@ public class BoardTest {
         Square result = instance.getSquare(new Position(1, 1));
         assertEquals(new Square(), result);
     }
-    
+
+    @Test
+    public void testRemoveWhenIsFree() {
+        System.out.println("testRemoveWhenIsFree");
+        Board instance = new Board();
+        instance.remove(new Position(1, 1));
+        Square result = instance.getSquare(new Position(1, 1));
+        assertEquals(new Square(), result);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testRemoveWhenNotInside() {
+        System.out.println("testRemoveWhenNotInside");
+        Board instance = new Board();
+        instance.remove(new Position(-1, 1));
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testIsMyOwnWhenNotOnBoard() {
         System.out.println("testIsMyOwnWhenNotOnBoard");
         Board instance = new Board();
-        instance.isMyOwn(new Position(22, 1),PlayerColor.RED);
+        instance.isMyOwn(new Position(22, 1), PlayerColor.RED);
     }
-    
+
     @Test
     public void testGetTakenSquare() {
         System.out.println("testGetTakenSquare");
         Board instance = new Board();
-        instance.put(new Piece(1, PlayerColor.RED), new Position(1,1));
+        instance.put(new Piece(1, PlayerColor.RED), new Position(1, 1));
         int expResult = 1;
         int result = instance.getTakenSquare(new Player(PlayerColor.RED)).size();
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testGetTakenSquareWhenEmpty() {
         System.out.println("testGetTakenSquareWhenEmpty");
