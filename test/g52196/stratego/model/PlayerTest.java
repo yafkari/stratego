@@ -1,5 +1,6 @@
 package g52196.stratego.model;
 
+import g52196.stratego.model.pieces.Flag;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
@@ -27,7 +28,7 @@ public class PlayerTest {
     public void testGetPiecesWhenStockFill() {
         System.out.println("testGetPiecesWhenStockFill");
         Player instance = new Player(PlayerColor.BLUE);
-        instance.addPiece(new Piece(0,  PlayerColor.BLUE));
+        instance.addPiece(new Piece(0, PlayerColor.BLUE));
         instance.addPiece(new Piece(0, PlayerColor.BLUE));
         List<Piece> result = instance.getPieces();
         assertFalse(result.isEmpty());
@@ -37,7 +38,7 @@ public class PlayerTest {
     public void testAddPiece() {
         System.out.println("addPiece");
         Player instance = new Player(PlayerColor.BLUE);
-        instance.addPiece(new Piece(0,  PlayerColor.BLUE));
+        instance.addPiece(new Piece(0, PlayerColor.BLUE));
         instance.addPiece(new Piece(0, PlayerColor.BLUE));
         List<Piece> expResult = new ArrayList<>();
         expResult.add(new Piece(0, PlayerColor.BLUE));
@@ -74,6 +75,8 @@ public class PlayerTest {
 
     @Test
     public void equalsTrueMySelf() {
+        System.out.println("equalsTrueMySelf");
+
         Player player1 = new Player(PlayerColor.BLUE);
         assertTrue(player1.equals(player1));
         assertTrue(player1.hashCode() == player1.hashCode());
@@ -81,6 +84,8 @@ public class PlayerTest {
 
     @Test
     public void equalsTrueNoPiece() {
+        System.out.println("equalsTrueNoPiece");
+
         Player player1 = new Player(PlayerColor.BLUE);
         Player player2 = new Player(PlayerColor.BLUE);
         assertTrue(player1.equals(player2));
@@ -89,6 +94,7 @@ public class PlayerTest {
 
     @Test
     public void equalsTrueWithPiece() {
+        System.out.println("equalsTrueWithPiece");
         Player player1 = new Player(PlayerColor.BLUE);
         Player player2 = new Player(PlayerColor.BLUE);
         player1.addPiece(new Piece(1, PlayerColor.BLUE));
@@ -99,6 +105,7 @@ public class PlayerTest {
 
     @Test
     public void equalsFalseDifferentColor() {
+        System.out.println("equalsFalseDifferentColor");
         Player player1 = new Player(PlayerColor.BLUE);
         Player player2 = new Player(PlayerColor.RED);
         assertFalse(player1.equals(player2));
@@ -106,6 +113,7 @@ public class PlayerTest {
 
     @Test
     public void equalsFalseDifferentPiece() {
+        System.out.println("equalsFalseDifferentPiece");
         Player player1 = new Player(PlayerColor.BLUE);
         Player player2 = new Player(PlayerColor.BLUE);
         player1.addPiece(new Piece(1, PlayerColor.BLUE));
@@ -115,6 +123,7 @@ public class PlayerTest {
 
     @Test
     public void equalsFalseOtherObject() {
+        System.out.println("equalsFalseOtherObject");
         Player player1 = new Player(PlayerColor.BLUE);
         String player2 = "abcd";
         assertFalse(player1.equals(player2));
@@ -122,15 +131,27 @@ public class PlayerTest {
 
     @Test
     public void equalsFalseNull() {
+        System.out.println("equalsFalseNull");
         Player player1 = new Player(PlayerColor.BLUE);
         assertFalse(player1.equals(null));
     }
-    
+
     @Test
     public void testHasFlag() {
+        System.out.println("testHasFlag");
         Game instance = new Game();
         instance.initialize();
         Boolean result = instance.getCurrent().hasFlag();
         assertTrue(result);
+    }
+
+    @Test
+    public void testRemove() {
+        System.out.println("testRemove");
+        Game instance = new Game();
+        instance.initialize();
+        instance.getCurrent().remove(new Flag(PlayerColor.RED));
+        assertTrue(!instance.getCurrent().getPieces()
+                .contains(new Flag(PlayerColor.RED)));
     }
 }
