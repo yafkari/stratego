@@ -19,6 +19,8 @@ public class View {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
+    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
 
     /**
      * Initialize the Scanner
@@ -97,14 +99,18 @@ public class View {
             System.out.print(" Row# 0" + i + " ");
             for (Square column : squares[i]) {
                 if (column.isFree()) {
-                    System.out.print("| __ |");
+                    if (column.isLand()) {
+                        System.out.print("| " + ANSI_GREEN_BACKGROUND + "__" + ANSI_RESET + " |");
+                    } else {
+                        System.out.print("| " + ANSI_CYAN_BACKGROUND + "__" + ANSI_RESET + " |");
+                    }
                 } else {
                     if (column.getPiece().getColor() == PlayerColor.BLUE) {
                         System.out.print("| "
-                                + ANSI_BLUE + column + ANSI_RESET + " |");
+                                + ANSI_GREEN_BACKGROUND + ANSI_BLUE + column + ANSI_RESET + " |");
                     } else {
                         System.out.print("| "
-                                + ANSI_RED + column + ANSI_RESET + " |");
+                                + ANSI_GREEN_BACKGROUND + ANSI_RED + column + ANSI_RESET + " |");
                     }
                 }
             }
