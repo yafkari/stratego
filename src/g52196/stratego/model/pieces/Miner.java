@@ -18,4 +18,16 @@ public class Miner extends Piece {
     public Miner(PlayerColor color) {
         super(3, color);
     }
+
+    /**
+     * Checks if the current piece is strictly greater than the other one and if
+     * it is a bomb
+     *
+     * @param other the piece to be compared to the current piece
+     * @return {@code true} if the current piece is stricly greater than the
+     * other one or the other piece is a bomb
+     */
+    public boolean isStronger(Piece other) {
+        return other.getRank() == 11 || super.isStronger(other);
+    }
 }
