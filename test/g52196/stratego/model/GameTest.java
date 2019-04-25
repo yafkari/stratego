@@ -2,8 +2,10 @@ package g52196.stratego.model;
 
 import static g52196.stratego.model.PlayerColor.BLUE;
 import static g52196.stratego.model.PlayerColor.RED;
+import g52196.stratego.model.pieces.Bomb;
 import g52196.stratego.model.pieces.Flag;
 import g52196.stratego.model.pieces.General;
+import g52196.stratego.model.pieces.Miner;
 import java.util.List;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -33,6 +35,8 @@ public class GameTest {
         defaultBoard[3][2].put(new General(RED));
         defaultBoard[4][2].put(new Flag(BLUE));
         defaultBoard[4][1].put(new General(BLUE));
+        defaultBoard[0][0].put(new Bomb(RED));
+        defaultBoard[1][0].put(new Miner(BLUE));
     }
 
     @Test
@@ -238,6 +242,8 @@ public class GameTest {
         board.getSquares()[2][2].put(new General(RED));
         board.getSquares()[4][2].put(new Flag(BLUE));
         board.getSquares()[4][1].put(new General(BLUE));
+        board.getSquares()[1][0].put(new Miner(BLUE));
+        board.getSquares()[0][0].put(new Bomb(RED));
 
         assertArrayEquals(board.getSquares(), result);
     }
@@ -256,6 +262,30 @@ public class GameTest {
         board.getSquares()[0][1].put(new Flag(RED));
         board.getSquares()[4][2].put(new General(RED));
         board.getSquares()[4][1].put(new General(BLUE));
+        board.getSquares()[1][0].put(new Miner(BLUE));
+        board.getSquares()[0][0].put(new Bomb(RED));
+
+        assertArrayEquals(board.getSquares(), result);
+    }
+
+    @Test
+    public void testApplyWhenDemining() {
+        System.out.println("testApplyWhenDemining");
+        Game instance = new Game();
+        instance.initialize();
+
+        instance.select(3, 2);
+        instance.apply(instance.getMoves().get(1));
+
+        instance.select(1, 0);
+        instance.apply(instance.getMoves().get(0));
+
+        Square[][] result = instance.getBoard();
+        Board board = new Board();
+        board.getSquares()[0][1].put(new Flag(RED));
+        board.getSquares()[4][2].put(new General(RED));
+        board.getSquares()[4][1].put(new General(BLUE));
+        board.getSquares()[0][0].put(new Miner(BLUE));
 
         assertArrayEquals(board.getSquares(), result);
     }
@@ -276,7 +306,8 @@ public class GameTest {
         Board board = new Board();
         board.getSquares()[0][1].put(new Flag(RED));
         board.getSquares()[4][2].put(new Flag(BLUE));
-
+        board.getSquares()[1][0].put(new Miner(BLUE));
+        board.getSquares()[0][0].put(new Bomb(RED));
 
         assertArrayEquals(board.getSquares(), result);
     }

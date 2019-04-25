@@ -1,7 +1,11 @@
 package g52196.stratego.model;
 
+import static g52196.stratego.model.PlayerColor.BLUE;
+import static g52196.stratego.model.PlayerColor.RED;
+import g52196.stratego.model.pieces.Bomb;
 import g52196.stratego.model.pieces.Flag;
 import g52196.stratego.model.pieces.General;
+import g52196.stratego.model.pieces.Miner;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +27,8 @@ public class Game implements Model {
      * The player is red and the opponent is blue
      */
     public Game() {
-        current = new Player(PlayerColor.RED);
-        opponent = new Player(PlayerColor.BLUE);
+        current = new Player(RED);
+        opponent = new Player(BLUE);
     }
 
     /**
@@ -38,7 +42,11 @@ public class Game implements Model {
         Piece blueFlag = new Flag(opponent.getColor());
         Piece redGeneral = new General(current.getColor());
         Piece blueGeneral = new General(opponent.getColor());
+        Bomb redBomb = new Bomb(current.getColor());
+        Miner blueMiner = new Miner(opponent.getColor());
 
+        board.put(redBomb, new Position(0, 0));
+        board.put(blueMiner, new Position(1, 0));
         board.put(redFlag, new Position(0, 1));
         board.put(blueFlag, new Position(4, 2));
         board.put(redGeneral, new Position(3, 2));
@@ -46,8 +54,11 @@ public class Game implements Model {
 
         current.addPiece(redFlag);
         current.addPiece(redGeneral);
+        current.addPiece(redBomb);
+
         opponent.addPiece(blueFlag);
         opponent.addPiece(blueGeneral);
+        opponent.addPiece(blueMiner);
     }
 
     /**
