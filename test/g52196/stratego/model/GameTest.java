@@ -14,15 +14,21 @@ import org.junit.Test;
 
 public class GameTest {
 
-    private final Square[][] defaultBoard = {
-        {new Square(), new Square(), new Square(), new Square()},
-        {new Square(), new Square(), new Square(), new Square()},
-        {new Square(), new Square(), new Square(), new Square()},
-        {new Square(), new Square(), new Square(), new Square()},
-        {new Square(), new Square(), new Square(), new Square()}};
+    private final Square[][] defaultBoard = new Square[6][5];
 
     @Before
     public void setUp() throws Exception {
+        for (int row = 0; row < defaultBoard.length; row++) {
+            for (int column = 0; column < defaultBoard[row].length; column++) {
+                if (row == 2 && column == 1 || row == 2 && column == 2
+                        || row == 2 && column == 3) {
+                    defaultBoard[row][column] = new Square(SquareType.WATER);
+                } else {
+                    defaultBoard[row][column] = new Square(SquareType.LAND);
+                }
+            }
+        }
+
         defaultBoard[0][1].put(new Flag(RED));
         defaultBoard[3][2].put(new General(RED));
         defaultBoard[4][2].put(new Flag(BLUE));
@@ -261,14 +267,16 @@ public class GameTest {
         instance.initialize();
 
         instance.select(3, 2);
-        instance.apply(instance.getMoves().get(1));
+        instance.apply(instance.getMoves().get(2));
 
         instance.select(4, 1);
-        instance.apply(instance.getMoves().get(2));
+        instance.apply(instance.getMoves().get(0));
 
         Square[][] result = instance.getBoard();
         Board board = new Board();
         board.getSquares()[0][1].put(new Flag(RED));
+        board.getSquares()[4][2].put(new Flag(BLUE));
+
 
         assertArrayEquals(board.getSquares(), result);
     }
