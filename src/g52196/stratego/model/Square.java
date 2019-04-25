@@ -10,11 +10,15 @@ import java.util.Objects;
 public class Square {
 
     private Piece piece;
+    private SquareType type;
 
     /**
-     * Creates an empty square
+     * Creates an empty square with the type passed in parameter
+     *
+     * @param type the type of the square
      */
-    public Square() {
+    public Square(SquareType type) {
+        this.type = type;
         piece = null;
     }
 
