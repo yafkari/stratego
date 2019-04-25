@@ -135,4 +135,20 @@ public class PieceTest {
         Boolean result = piece1.hasSameRank(piece2);
         assertFalse(result);
     }
+    
+    @Test
+    public void testCanCrossTrue() {
+        System.out.println("testCanCrossTrue");
+        Piece piece = new Piece(1, BLUE);
+        Boolean result = piece.canCross(new Square(SquareType.LAND));
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testCanCrossFalse() {
+        System.out.println("testCanCrossFalse");
+        Piece piece = new Piece(1, BLUE);
+        Boolean result = piece.canCross(new Square(SquareType.WATER));
+        assertFalse(result);
+    }
 }
