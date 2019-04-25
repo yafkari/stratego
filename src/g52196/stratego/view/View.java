@@ -61,7 +61,7 @@ public class View {
     }
     
     /**
-     * Displays the list of availabe commands
+     * Displays the list of available commands
      */
     public void displayHelp() {
         info("List of available commands:");
@@ -92,7 +92,7 @@ public class View {
         displayHeaderBoard(squares.length);
         
         for (int i = 0; i < squares.length; i++) {
-            System.out.print(" Row# " + i + " ");
+            System.out.print(" Row# 0" + i + " ");
             for (Square column : squares[i]) {
                 if (column.isFree()) {
                     System.out.print("| __ |");
@@ -117,11 +117,11 @@ public class View {
      * @param size the number of columns to be displayed
      */
     public void displayHeaderBoard(int size) {
-        System.out.print("\n Col#   ");
-        for (int i = 0; i < size; i++) {
-            System.out.print("| "+i+" |");
+        System.out.print("\n Col#    ");
+        for (int i = 0; i < size-1; i++) {
+            System.out.print("| 0"+i+" |");
         }
-        System.out.println("\n ===========================");
+        System.out.println("\n ================================");
     }
     
     /**
