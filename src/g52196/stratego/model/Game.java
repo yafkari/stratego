@@ -131,6 +131,9 @@ public class Game implements Model {
     /**
      * Returns the possible moves
      *
+     * A move is possible if the destination is empty, and the player does not
+     * own the destination, and the square is of type LAND
+     *
      * @return the possible moves
      * @throws NullPointerException if the selected piece is null
      */
@@ -146,7 +149,9 @@ public class Game implements Model {
             Position nextPosition = selected.next(direction);
             if (board.isInside(nextPosition)) {
                 if (board.isFree(nextPosition)
-                        || !board.isMyOwn(nextPosition, current.getColor())) {
+                        || !board.isMyOwn(nextPosition, current.getColor())
+                        || board.getSquare(selected).getPiece()
+                                .canCross(board.getSquare(nextPosition))) {
 
                     possibleMoves.add(new Move(
                             board.getSquare(selected).getPiece(),
