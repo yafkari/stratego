@@ -155,4 +155,18 @@ public class SquareTest {
         String result = instance.toString();
         assertFalse(result.isEmpty());
     }
+    
+    @Test
+    public void testIsLandTrue() {
+        System.out.println("testIsLandTrue");
+        Square instance = new Square(SquareType.LAND);
+        assertTrue(instance.isLand());
+    }
+    
+    @Test
+    public void testIsLandFalse() {
+        System.out.println("testIsLandFalse");
+        Square instance = new Square(SquareType.WATER);
+        assertFalse(instance.isLand());
+    }
 }
