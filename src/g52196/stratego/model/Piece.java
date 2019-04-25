@@ -58,13 +58,26 @@ public class Piece {
     }
 
     /**
-     * Checks if the current piece equals to the other one passed in paramater
+     * Checks if the current piece equals to the other one passed in parameter
      *
      * @param other the piece to be compared to the current piece
      * @return {@code true} if the pieces have the same rank
      */
     public boolean hasSameRank(Piece other) {
         return rank == other.rank;
+    }
+
+    /**
+     * Returns true if the piece can cross the square passed in parameter
+     *
+     * A square can be crossed if it is of type land
+     *
+     * @param square the square to cross
+     * @return {@code true} if the piece can cross the square passed in
+     * parameter
+     */
+    public boolean canCross(Square square) {
+        return square.isLand();
     }
 
     @Override
