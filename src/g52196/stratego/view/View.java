@@ -125,7 +125,7 @@ public class View {
     }
     
     /**
-     * Indicates to the players that the game is over
+     * Indicates to the players that the game is over if there is winners
      */
     public void displayOver(List<Player> winners) {
         info("GAME OVER");
