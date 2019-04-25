@@ -71,6 +71,15 @@ public class Square {
         }
         return false;
     }
+    
+    /**
+     * Returns if the square is of land
+     * 
+     * @return if the square is of land
+     */
+    public boolean isLand() {
+        return type == SquareType.LAND;
+    }
 
     @Override
     public boolean equals(Object obj) {
