@@ -6,19 +6,25 @@ import java.util.List;
 /**
  * @author 52196
  *
- * Represents the board of the game The board has 5 rows and 4 columns
+ * Represents the board of the game The board has 6 rows and 5 columns
  */
 public class Board {
 
-    private Square[][] squares = new Square[5][4];
+    private Square[][] squares = new Square[6][5];
 
     /**
-     * Creates empty squares on the board with 5 rows and 4 columns
+     * Creates empty squares on the board with 6 rows and 5 columns with 3
+     * squares that are of type water, others are of type land
      */
     public Board() {
         for (int row = 0; row < squares.length; row++) {
             for (int column = 0; column < squares[row].length; column++) {
-                squares[row][column] = new Square();
+                if (row == 2 && column == 1 || row == 2 && column == 2
+                        || row == 2 && column == 3) {
+                    squares[row][column] = new Square(SquareType.WATER);
+                } else {
+                    squares[row][column] = new Square(SquareType.LAND);
+                }
             }
         }
     }
@@ -124,13 +130,17 @@ public class Board {
         }
 
         if (!getSquare(position).isFree()) {
-            this.getSquares()[position.getRow()][position.getColumn()] = new Square();
+            this.getSquares()[position.getRow()][position.getColumn()]
+                    = this.getSquares()[position.getRow()][position.getColumn()]
+                            .isLand()
+                            ? new Square(SquareType.LAND)
+                            : new Square(SquareType.WATER);
         }
     }
 
     /**
      * Returns the list of squares owned by the player passed in parameter
-     * 
+     *
      * @param player the player for who we look for the taken squares
      * @return the list of squares owned by the player passed in parameter
      */

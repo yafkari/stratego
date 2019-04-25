@@ -2,16 +2,26 @@ package g52196.stratego.model;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import org.junit.Before;
 import org.junit.Test;
 
 public class BoardTest {
 
-    private final Square[][] defaultBoard = {
-        {new Square(), new Square(), new Square(), new Square()},
-        {new Square(), new Square(), new Square(), new Square()},
-        {new Square(), new Square(), new Square(), new Square()},
-        {new Square(), new Square(), new Square(), new Square()},
-        {new Square(), new Square(), new Square(), new Square()}};
+    private final Square[][] defaultBoard = new Square[6][5];
+    
+    @Before
+    public void setUp() throws Exception {
+        for (int row = 0; row < defaultBoard.length; row++) {
+            for (int column = 0; column < defaultBoard[row].length; column++) {
+                if (row == 2 && column == 1 || row == 2 && column == 2
+                        || row == 2 && column == 3) {
+                    defaultBoard[row][column] = new Square(SquareType.WATER);
+                } else {
+                    defaultBoard[row][column] = new Square(SquareType.LAND);
+                }
+            }
+        }
+    }
 
     @Test
     public void testGetSquareWhenSquareIsFill() {
@@ -19,7 +29,7 @@ public class BoardTest {
         Position position = new Position(3, 2);
         Board instance = new Board();
         instance.put(new Piece(4, PlayerColor.BLUE), position);
-        Square expResult = new Square();
+        Square expResult = new Square(SquareType.LAND);
         expResult.put(new Piece(4, PlayerColor.BLUE));
         Square result = instance.getSquare(position);
         assertEquals(expResult, result);
@@ -30,7 +40,7 @@ public class BoardTest {
         System.out.println("testGetSquareWhenSquareIsEmpty");
         Position position = new Position(0, 1);
         Board instance = new Board();
-        Square expResult = new Square();
+        Square expResult = new Square(SquareType.LAND);
         Square result = instance.getSquare(position);
         assertEquals(expResult, result);
     }
@@ -72,7 +82,7 @@ public class BoardTest {
         Position position = new Position(0, 0);
         Board instance = new Board();
         instance.put(piece, position);
-        Square expResult = new Square();
+        Square expResult = new Square(SquareType.LAND);
         expResult.put(piece);
         Square result = instance.getSquare(position);
         assertEquals(expResult, result);
@@ -189,7 +199,7 @@ public class BoardTest {
     @Test
     public void testIsInsideWhenOutsideBoundaryDown() {
         System.out.println("testIsInsideWhenOutsideBoundaryDown");
-        Position position = new Position(5, 2);
+        Position position = new Position(7, 2);
         Board instance = new Board();
         boolean expResult = false;
         boolean result = instance.isInside(position);
@@ -209,7 +219,7 @@ public class BoardTest {
     @Test
     public void testIsInsideWhenOutsideBoundaryRight() {
         System.out.println("testIsInsideWhenOutsideBoundaryRight");
-        Position position = new Position(3, 4);
+        Position position = new Position(3, 10);
         Board instance = new Board();
         boolean expResult = false;
         boolean result = instance.isInside(position);
@@ -296,7 +306,8 @@ public class BoardTest {
         instance.put(new Piece(1, PlayerColor.RED), new Position(1, 1));
         instance.remove(new Position(1, 1));
         Square result = instance.getSquare(new Position(1, 1));
-        assertEquals(new Square(), result);
+        
+        assertEquals(new Square(SquareType.LAND), result);
     }
 
     @Test
@@ -305,7 +316,7 @@ public class BoardTest {
         Board instance = new Board();
         instance.remove(new Position(1, 1));
         Square result = instance.getSquare(new Position(1, 1));
-        assertEquals(new Square(), result);
+        assertEquals(new Square(SquareType.LAND), result);
     }
 
     @Test(expected = IllegalArgumentException.class)
