@@ -30,7 +30,7 @@ public class Miner extends Piece {
     public boolean isStronger(Piece other) {
         return other.getRank() == 11 || super.isStronger(other);
     }
-    
+
     @Override
     public String toString() {
         return "DE";
