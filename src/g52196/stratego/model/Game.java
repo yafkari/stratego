@@ -5,7 +5,9 @@ import static g52196.stratego.model.PlayerColor.RED;
 import g52196.stratego.model.pieces.Bomb;
 import g52196.stratego.model.pieces.Flag;
 import g52196.stratego.model.pieces.General;
+import g52196.stratego.model.pieces.Marshal;
 import g52196.stratego.model.pieces.Miner;
+import g52196.stratego.model.pieces.Spy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +46,11 @@ public class Game implements Model {
         Piece blueGeneral = new General(opponent.getColor());
         Bomb redBomb = new Bomb(current.getColor());
         Miner blueMiner = new Miner(opponent.getColor());
+        Marshal redMarshal = new Marshal(current.getColor());
+        Spy blueSpy = new Spy(opponent.getColor());
 
+        board.put(redMarshal, new Position(4, 4));
+        board.put(blueSpy, new Position(3, 4));
         board.put(redBomb, new Position(0, 0));
         board.put(blueMiner, new Position(1, 0));
         board.put(redFlag, new Position(0, 1));
@@ -55,10 +61,12 @@ public class Game implements Model {
         current.addPiece(redFlag);
         current.addPiece(redGeneral);
         current.addPiece(redBomb);
+        current.addPiece(redMarshal);
 
         opponent.addPiece(blueFlag);
         opponent.addPiece(blueGeneral);
         opponent.addPiece(blueMiner);
+        opponent.addPiece(blueSpy);
     }
 
     /**

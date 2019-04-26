@@ -20,13 +20,13 @@ public class Marshal extends Piece {
     }
 
     /**
-     * Checks if the other piece is a spy, only if it is true, the marshal wins
+     * Returns {@code true} because the marshal is stronger than every pieces
      *
      * @param other the piece to be compared to the current piece
-     * @return {@code true} if the other piece is a spy
+     * @return {@code true}
      */
     public boolean isStronger(Piece other) {
-        return other.getRank() == 1;
+        return true;
     }
 
     @Override
