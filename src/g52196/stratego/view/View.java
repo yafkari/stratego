@@ -91,6 +91,7 @@ public class View {
      * Displays the board passed in parameter
      *
      * @param squares the board to be displayed
+     * @param currentColor the color of the current player
      */
     public void displayBoard(Square[][] squares, PlayerColor currentColor) {
         displayHeaderBoard(squares.length);
