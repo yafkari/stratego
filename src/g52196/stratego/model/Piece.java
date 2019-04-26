@@ -11,10 +11,11 @@ public class Piece {
 
     private int rank;
     private PlayerColor color;
+    private int nbSteps;
 
     /**
-     * Creates a Piece with a rank and a color that have been passed in
-     * parameter.
+     * Creates a Piece with a number of steps of one and with a rank and a color
+     * that have been passed in parameter.
      *
      * @param rank the rank of the piece
      * @param color the color of the piece
@@ -22,10 +23,32 @@ public class Piece {
      */
     public Piece(int rank, PlayerColor color) {
         if (rank < 0) {
-            throw new IllegalArgumentException("The rank must be strictly positive");
+            throw new IllegalArgumentException("The rank must be positive");
         }
         this.rank = rank;
         this.color = color;
+        this.nbSteps = 1;
+    }
+
+    /**
+     * Creates a Piece with a rank, a color and a number of steps that have been
+     * passed in parameter.
+     *
+     * @param rank the rank of the piece
+     * @param color the color of the piece
+     * @param nbSteps the number of steps the piece can do
+     * @throws IllegalArgumentException if the rank is negative
+     */
+    public Piece(int rank, PlayerColor color, int nbSteps) {
+        if (rank < 0) {
+            throw new IllegalArgumentException("rank must be positive");
+        }
+        if (nbSteps < 0) {
+            throw new IllegalArgumentException("nbSteps must be positive");
+        }
+        this.rank = rank;
+        this.color = color;
+        this.nbSteps = nbSteps;
     }
 
     /**

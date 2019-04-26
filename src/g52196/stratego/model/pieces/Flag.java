@@ -16,7 +16,7 @@ public class Flag extends Piece {
      * @param color the color of the flag
      */
     public Flag(PlayerColor color) {
-        super(0, color);
+        super(0, color, 0);
     }
 
     @Override
