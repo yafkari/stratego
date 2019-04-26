@@ -92,7 +92,7 @@ public class View {
      *
      * @param squares the board to be displayed
      */
-    public void displayBoard(Square[][] squares) {
+    public void displayBoard(Square[][] squares, PlayerColor currentColor) {
         displayHeaderBoard(squares.length);
 
         for (int i = 0; i < squares.length; i++) {
@@ -105,12 +105,22 @@ public class View {
                         System.out.print("| " + ANSI_CYAN_BACKGROUND + "__" + ANSI_RESET + " |");
                     }
                 } else {
-                    if (column.getPiece().getColor() == PlayerColor.BLUE) {
-                        System.out.print("| "
-                                + ANSI_GREEN_BACKGROUND + ANSI_BLUE + column + ANSI_RESET + " |");
+                    if (column.getPiece().getColor() == currentColor) {
+                        if (column.getPiece().getColor() == PlayerColor.BLUE) {
+                            System.out.print("| "
+                                    + ANSI_GREEN_BACKGROUND + ANSI_BLUE + column + ANSI_RESET + " |");
+                        } else {
+                            System.out.print("| "
+                                    + ANSI_GREEN_BACKGROUND + ANSI_RED + column + ANSI_RESET + " |");
+                        }
                     } else {
-                        System.out.print("| "
-                                + ANSI_GREEN_BACKGROUND + ANSI_RED + column + ANSI_RESET + " |");
+                        if (column.getPiece().getColor() == PlayerColor.BLUE) {
+                            System.out.print("| "
+                                    + ANSI_GREEN_BACKGROUND + ANSI_BLUE + "??" + ANSI_RESET + " |");
+                        } else {
+                            System.out.print("| "
+                                    + ANSI_GREEN_BACKGROUND + ANSI_RED + "??" + ANSI_RESET + " |");
+                        }
                     }
                 }
             }

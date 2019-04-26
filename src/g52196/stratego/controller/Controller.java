@@ -46,7 +46,7 @@ public class Controller {
         view.displayHelp();
 
         while (!game.isOver()) {
-            view.displayBoard(game.getBoard());
+            view.displayBoard(game.getBoard(), game.getCurrent().getColor());
             view.displayCurrentPlayer(game.getCurrent());
             String command = view.askCommand();
 
@@ -58,7 +58,8 @@ public class Controller {
                     System.out.println("Please retry");
                 }
             }
-            if (command.length() > 9 && command.substring(0, 6).equalsIgnoreCase("select")) {
+            if (command.length() > 9 && 
+                    command.substring(0, 6).equalsIgnoreCase("select")) {
                 String row = command.substring(7, 8);
                 String column = command.substring(9, 10);
 
@@ -70,15 +71,18 @@ public class Controller {
                     System.out.println("Please enter numbers !");
                     System.out.println("Example: select 1 2");
                 } catch (IllegalArgumentException err) {
-                    System.out.println("You are trying to select a piece that is not yours");
+                    System.out.println("You are trying to select a piece that "
+                            + "is not yours");
                 }
             }
-            if (command.length() > 6 && command.substring(0, 5).equalsIgnoreCase("apply")) {
+            if (command.length() > 6 && 
+                    command.substring(0, 5).equalsIgnoreCase("apply")) {
                 try {
                     int number = Integer.parseInt(command.substring(6, 7));
                     game.apply(game.getMoves().get(number));
-                } catch (Exception e) {
-                    System.out.println(e);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("You are trying to apply, but the piece "
+                            + "does not have possible moves");
                 }
             }
             if (command.equalsIgnoreCase("quit")) {
