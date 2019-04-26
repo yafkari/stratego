@@ -155,6 +155,7 @@ public class Game implements Model {
         }
 
         List<Move> possibleMoves = new ArrayList<>();
+
         if (board.getSquare(selected).getPiece().getNbSteps() != 0) {
             for (Direction direction : Direction.values()) {
                 Position nextPosition = selected.next(direction);
@@ -169,6 +170,22 @@ public class Game implements Model {
                                 new Position(selected.getRow(),
                                         selected.getColumn()),
                                 nextPosition));
+
+                        if (board.getSquare(selected).getPiece().getNbSteps() == 2) {
+                            Position nextPosition2 = nextPosition.next(direction);
+                            if (board.isInside(nextPosition2)) {
+                                if (board.isFree(nextPosition2)
+                                        || !board.isMyOwn(nextPosition2, current.getColor())
+                                        || board.getSquare(selected).getPiece()
+                                                .canCross(board.getSquare(nextPosition2))) {
+                                    possibleMoves.add(new Move(
+                                            board.getSquare(selected).getPiece(),
+                                            new Position(selected.getRow(),
+                                                    selected.getColumn()),
+                                            nextPosition2));
+                                }
+                            }
+                        }
                     }
                 }
             }
