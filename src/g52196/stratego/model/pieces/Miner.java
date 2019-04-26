@@ -13,7 +13,7 @@ public class Miner extends Piece {
     /**
      * Creates a miner with a color passed in parameter
      *
-     * @param color the color of the bomb
+     * @param color the color of the miner
      */
     public Miner(PlayerColor color) {
         super(3, color);
