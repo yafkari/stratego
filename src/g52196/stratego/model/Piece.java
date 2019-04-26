@@ -68,6 +68,15 @@ public class Piece {
     public PlayerColor getColor() {
         return color;
     }
+    
+    /**
+     * Returns the number of steps that the piece can do
+     *
+     * @return the number of steps that the piece can do
+     */
+    public int getNbSteps() {
+        return nbSteps;
+    }
 
     /**
      * Checks if the current piece is strictly greater than the other one

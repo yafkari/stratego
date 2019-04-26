@@ -155,22 +155,25 @@ public class Game implements Model {
         }
 
         List<Move> possibleMoves = new ArrayList<>();
+        if (board.getSquare(selected).getPiece().getNbSteps() != 0) {
+            for (Direction direction : Direction.values()) {
+                Position nextPosition = selected.next(direction);
+                if (board.isInside(nextPosition)) {
+                    if (board.isFree(nextPosition)
+                            || !board.isMyOwn(nextPosition, current.getColor())
+                            || board.getSquare(selected).getPiece()
+                                    .canCross(board.getSquare(nextPosition))) {
 
-        for (Direction direction : Direction.values()) {
-            Position nextPosition = selected.next(direction);
-            if (board.isInside(nextPosition)) {
-                if (board.isFree(nextPosition)
-                        || !board.isMyOwn(nextPosition, current.getColor())
-                        || board.getSquare(selected).getPiece()
-                                .canCross(board.getSquare(nextPosition))) {
-
-                    possibleMoves.add(new Move(
-                            board.getSquare(selected).getPiece(),
-                            new Position(selected.getRow(), selected.getColumn()),
-                            nextPosition));
+                        possibleMoves.add(new Move(
+                                board.getSquare(selected).getPiece(),
+                                new Position(selected.getRow(),
+                                        selected.getColumn()),
+                                nextPosition));
+                    }
                 }
             }
         }
+
         return possibleMoves;
     }
 
