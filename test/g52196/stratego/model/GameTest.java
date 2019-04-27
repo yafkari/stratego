@@ -5,7 +5,10 @@ import static g52196.stratego.model.PlayerColor.RED;
 import g52196.stratego.model.pieces.Bomb;
 import g52196.stratego.model.pieces.Flag;
 import g52196.stratego.model.pieces.General;
+import g52196.stratego.model.pieces.Marshal;
 import g52196.stratego.model.pieces.Miner;
+import g52196.stratego.model.pieces.Pathfinder;
+import g52196.stratego.model.pieces.Spy;
 import java.util.List;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -37,6 +40,9 @@ public class GameTest {
         defaultBoard[4][1].put(new General(BLUE));
         defaultBoard[0][0].put(new Bomb(RED));
         defaultBoard[1][0].put(new Miner(BLUE));
+        defaultBoard[3][4].put(new Spy(BLUE));
+        defaultBoard[4][4].put(new Marshal(RED));
+        defaultBoard[4][0].put(new Pathfinder(RED));
     }
 
     @Test
@@ -244,7 +250,10 @@ public class GameTest {
         board.getSquares()[4][1].put(new General(BLUE));
         board.getSquares()[1][0].put(new Miner(BLUE));
         board.getSquares()[0][0].put(new Bomb(RED));
-
+        board.getSquares()[3][4].put(new Spy(BLUE));
+        board.getSquares()[4][4].put(new Marshal(RED));
+        board.getSquares()[4][0].put(new Pathfinder(RED));
+        
         assertArrayEquals(board.getSquares(), result);
     }
 
@@ -264,6 +273,9 @@ public class GameTest {
         board.getSquares()[4][1].put(new General(BLUE));
         board.getSquares()[1][0].put(new Miner(BLUE));
         board.getSquares()[0][0].put(new Bomb(RED));
+        board.getSquares()[3][4].put(new Spy(BLUE));
+        board.getSquares()[4][4].put(new Marshal(RED));
+        board.getSquares()[4][0].put(new Pathfinder(RED));
 
         assertArrayEquals(board.getSquares(), result);
     }
@@ -286,6 +298,9 @@ public class GameTest {
         board.getSquares()[4][2].put(new General(RED));
         board.getSquares()[4][1].put(new General(BLUE));
         board.getSquares()[0][0].put(new Miner(BLUE));
+        board.getSquares()[3][4].put(new Spy(BLUE));
+        board.getSquares()[4][4].put(new Marshal(RED));
+        board.getSquares()[4][0].put(new Pathfinder(RED));
 
         assertArrayEquals(board.getSquares(), result);
     }
@@ -308,6 +323,9 @@ public class GameTest {
         board.getSquares()[4][2].put(new Flag(BLUE));
         board.getSquares()[1][0].put(new Miner(BLUE));
         board.getSquares()[0][0].put(new Bomb(RED));
+        board.getSquares()[3][4].put(new Spy(BLUE));
+        board.getSquares()[4][4].put(new Marshal(RED));
+        board.getSquares()[4][0].put(new Pathfinder(RED));
 
         assertArrayEquals(board.getSquares(), result);
     }
