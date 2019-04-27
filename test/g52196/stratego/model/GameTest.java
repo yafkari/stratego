@@ -314,6 +314,31 @@ public class GameTest {
 
         assertArrayEquals(board.getSquares(), result);
     }
+    
+    @Test
+    public void testApplyWhenTwoSteps() {
+        System.out.println("testApplyWhenTwoSteps");
+        Game instance = new Game();
+        instance.initialize();
+
+        instance.select(4, 0);
+        instance.apply(instance.getMoves().get(1));
+
+        Square[][] result = instance.getBoard();
+        Board board = new Board();
+        
+        board.getSquares()[0][1].put(new Flag(RED));
+        board.getSquares()[3][2].put(new General(RED));
+        board.getSquares()[4][2].put(new Flag(BLUE));
+        board.getSquares()[4][1].put(new General(BLUE));
+        board.getSquares()[0][0].put(new Bomb(RED));
+        board.getSquares()[1][0].put(new Miner(BLUE));
+        board.getSquares()[3][4].put(new Spy(BLUE));
+        board.getSquares()[4][4].put(new Marshal(RED));
+        board.getSquares()[2][0].put(new Pathfinder(RED));
+
+        assertArrayEquals(board.getSquares(), result);
+    }
 
     @Test
     public void testApplyWhenEndHasSameRank() {
