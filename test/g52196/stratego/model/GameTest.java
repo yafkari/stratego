@@ -167,6 +167,16 @@ public class GameTest {
         List<Move> result = instance.getMoves();
         assertEquals(4, result.size());
     }
+    
+    @Test
+    public void testGetMovesWhenNoMoves() {
+        System.out.println("testGetMovesWhenNoMoves");
+        Game instance = new Game();
+        instance.initialize();
+        instance.select(0, 0);
+        List<Move> result = instance.getMoves();
+        assertEquals(0, result.size());
+    }
 
     @Test(expected = NullPointerException.class)
     public void testGetMovesWhenSelectedIsNull() {
