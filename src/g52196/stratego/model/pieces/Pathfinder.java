@@ -16,7 +16,7 @@ public class Pathfinder extends Piece {
      * @param color the color of the pathfinder
      */
     public Pathfinder(PlayerColor color) {
-        super(2, color, 2);
+        super(2, 2, color);
     }
 
     @Override

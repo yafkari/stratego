@@ -16,7 +16,7 @@ public class Bomb extends Piece {
      * @param color the color of the bomb
      */
     public Bomb(PlayerColor color) {
-        super(11, color, 0);
+        super(11, 0, color);
     }
 
     @Override

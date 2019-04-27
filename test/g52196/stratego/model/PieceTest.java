@@ -2,6 +2,8 @@ package g52196.stratego.model;
 
 import static g52196.stratego.model.PlayerColor.BLUE;
 import static g52196.stratego.model.PlayerColor.RED;
+import g52196.stratego.model.pieces.Bomb;
+import g52196.stratego.model.pieces.Flag;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -29,6 +31,30 @@ public class PieceTest {
         Piece instance = new Piece(1, BLUE);
         assertEquals(BLUE, instance.getColor());
         assertEquals(1, instance.getRank());
+    }
+
+    @Test
+    public void testConstructPieceWhenNbStepsIsZero() {
+        System.out.println("testConstructPieceWhenNbStepsIsZero");
+        Piece instance = new Flag(BLUE);
+        Piece instance2 = new Bomb(BLUE);
+
+        assertEquals(0, instance.getNbSteps());
+        assertEquals(0, instance2.getNbSteps());
+    }
+
+    @Test
+    public void testConstructPieceWhenNbStepsIsOne() {
+        System.out.println("testConstructPieceWhenNbStepsIsTwo");
+        Piece instance = new Piece(1, BLUE);
+        assertEquals(1, instance.getNbSteps());
+    }
+
+    @Test
+    public void testConstructPieceWhenNbStepsIsTwo() {
+        System.out.println("testConstructPieceWhenNbStepsIsTwo");
+        Piece instance = new Piece(1, 2, BLUE);
+        assertEquals(2, instance.getNbSteps());
     }
 
     @Test
@@ -99,7 +125,7 @@ public class PieceTest {
         Piece piece1 = new Piece(10, BLUE);
         assertFalse(piece1.equals(null));
     }
-    
+
     @Test
     public void testIsStrongerTrue() {
         System.out.println("testIsStrongerTrue");
@@ -108,7 +134,7 @@ public class PieceTest {
         Boolean result = piece1.isStronger(piece2);
         assertTrue(result);
     }
-    
+
     @Test
     public void testIsStrongerFalse() {
         System.out.println("testIsStrongerFalse");
@@ -117,7 +143,7 @@ public class PieceTest {
         Boolean result = piece1.isStronger(piece2);
         assertFalse(result);
     }
-    
+
     @Test
     public void testhasSameRankTrue() {
         System.out.println("testhasSameRankTrue");
@@ -126,7 +152,7 @@ public class PieceTest {
         Boolean result = piece1.hasSameRank(piece2);
         assertTrue(result);
     }
-    
+
     @Test
     public void testhasSameRankFalse() {
         System.out.println("testhasSameRankFalse");
@@ -135,7 +161,7 @@ public class PieceTest {
         Boolean result = piece1.hasSameRank(piece2);
         assertFalse(result);
     }
-    
+
     @Test
     public void testCanCrossTrue() {
         System.out.println("testCanCrossTrue");
@@ -143,7 +169,7 @@ public class PieceTest {
         Boolean result = piece.canCross(new Square(SquareType.LAND));
         assertTrue(result);
     }
-    
+
     @Test
     public void testCanCrossFalse() {
         System.out.println("testCanCrossFalse");

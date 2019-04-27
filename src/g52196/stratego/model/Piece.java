@@ -35,11 +35,11 @@ public class Piece {
      * passed in parameter.
      *
      * @param rank the rank of the piece
-     * @param color the color of the piece
      * @param nbSteps the number of steps the piece can do
+     * @param color the color of the piece
      * @throws IllegalArgumentException if the rank is negative
      */
-    public Piece(int rank, PlayerColor color, int nbSteps) {
+    public Piece(int rank, int nbSteps, PlayerColor color) {
         if (rank < 0) {
             throw new IllegalArgumentException("rank must be positive");
         }
@@ -68,7 +68,7 @@ public class Piece {
     public PlayerColor getColor() {
         return color;
     }
-    
+
     /**
      * Returns the number of steps that the piece can do
      *
