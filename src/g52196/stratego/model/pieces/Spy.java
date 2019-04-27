@@ -26,7 +26,7 @@ public class Spy extends Piece {
      * @return {@code true} if the other piece is a marshal
      */
     public boolean isStronger(Piece other) {
-        return other.getRank() == 11;
+        return other.getRank() == 11 || super.isStronger(other);
     }
 
     @Override
