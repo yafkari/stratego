@@ -167,7 +167,7 @@ public class GameTest {
         List<Move> result = instance.getMoves();
         assertEquals(4, result.size());
     }
-    
+
     @Test
     public void testGetMovesWhenNoMoves() {
         System.out.println("testGetMovesWhenNoMoves");
@@ -263,7 +263,7 @@ public class GameTest {
         board.getSquares()[3][4].put(new Spy(BLUE));
         board.getSquares()[4][4].put(new Marshal(RED));
         board.getSquares()[4][0].put(new Pathfinder(RED));
-        
+
         assertArrayEquals(board.getSquares(), result);
     }
 
@@ -314,7 +314,7 @@ public class GameTest {
 
         assertArrayEquals(board.getSquares(), result);
     }
-    
+
     @Test
     public void testApplyWhenTwoSteps() {
         System.out.println("testApplyWhenTwoSteps");
@@ -326,7 +326,7 @@ public class GameTest {
 
         Square[][] result = instance.getBoard();
         Board board = new Board();
-        
+
         board.getSquares()[0][1].put(new Flag(RED));
         board.getSquares()[3][2].put(new General(RED));
         board.getSquares()[4][2].put(new Flag(BLUE));
@@ -372,5 +372,44 @@ public class GameTest {
         instance.initialize();
         instance.select(3, 2);
         instance.apply(null);
+    }
+
+    @Test
+    public void testCanBeNextMoveWhenNotOnBoard() {
+        System.out.println("testCanBeNextMoveWhenNotOnBoard");
+        Game instance = new Game();
+        instance.initialize();
+
+        assertFalse(instance.canBeNextMove(new Position(-1, 0)));
+    }
+
+    @Test
+    public void testCanBeNextMoveWhenTrue() {
+        System.out.println("testCanBeNextMoveWhenTrue");
+        Game instance = new Game();
+        instance.initialize();
+        instance.select(3, 2);
+        
+        assertTrue(instance.canBeNextMove(new Position(3, 3)));
+    }
+    
+    @Test
+    public void testCanBeNextMoveWhenTrueWithTwoSteps() {
+        System.out.println("testCanBeNextMoveWhenTrueWithTwoSteps");
+        Game instance = new Game();
+        instance.initialize();
+        instance.select(4, 0);
+        
+        assertTrue(instance.canBeNextMove(new Position(2, 0)));
+    }
+    
+    @Test
+    public void testCanBeNextMoveWhenFalse() {
+        System.out.println("testCanBeNextMoveWhenFalse");
+        Game instance = new Game();
+        instance.initialize();
+        instance.select(0, 0);
+        
+        assertTrue(instance.canBeNextMove(new Position(0, 1)));
     }
 }

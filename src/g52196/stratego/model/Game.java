@@ -50,7 +50,7 @@ public class Game implements Model {
         Marshal redMarshal = new Marshal(current.getColor());
         Spy blueSpy = new Spy(opponent.getColor());
         Pathfinder redPathfinder = new Pathfinder(current.getColor());
-        
+
         board.put(redPathfinder, new Position(4, 0));
         board.put(redMarshal, new Position(4, 4));
         board.put(blueSpy, new Position(3, 4));
@@ -154,9 +154,6 @@ public class Game implements Model {
     /**
      * Returns the possible moves
      *
-     * A move is possible if the destination is empty, and the player does not
-     * own the destination, and the square is of type LAND
-     *
      * @return the possible moves
      * @throws NullPointerException if the selected piece is null
      */
@@ -170,33 +167,22 @@ public class Game implements Model {
 
         if (board.getSquare(selected).getPiece().getNbSteps() != 0) {
             for (Direction direction : Direction.values()) {
-                Position nextPosition = selected.next(direction);
-                if (board.isInside(nextPosition)) {
-                    if (board.isFree(nextPosition)
-                            || !board.isMyOwn(nextPosition, current.getColor())
-                            || board.getSquare(selected).getPiece()
-                                    .canCross(board.getSquare(nextPosition))) {
+                Position nextPosition = selected.next(direction);   // pass nbSteps to next ?
+                if (canBeNextMove(nextPosition)) {
+                    possibleMoves.add(new Move(
+                            board.getSquare(selected).getPiece(),
+                            new Position(selected.getRow(),
+                                    selected.getColumn()),
+                            nextPosition));
 
-                        possibleMoves.add(new Move(
-                                board.getSquare(selected).getPiece(),
-                                new Position(selected.getRow(),
-                                        selected.getColumn()),
-                                nextPosition));
-
-                        if (board.getSquare(selected).getPiece().getNbSteps() == 2) {
-                            Position nextPosition2 = nextPosition.next(direction);
-                            if (board.isInside(nextPosition2)) {
-                                if (board.isFree(nextPosition2)
-                                        || !board.isMyOwn(nextPosition2, current.getColor())
-                                        || board.getSquare(selected).getPiece()
-                                                .canCross(board.getSquare(nextPosition2))) {
-                                    possibleMoves.add(new Move(
-                                            board.getSquare(selected).getPiece(),
-                                            new Position(selected.getRow(),
-                                                    selected.getColumn()),
-                                            nextPosition2));
-                                }
-                            }
+                    if (board.getSquare(selected).getPiece().getNbSteps() == 2) {
+                        nextPosition = nextPosition.next(direction);
+                        if (canBeNextMove(nextPosition)) {
+                            possibleMoves.add(new Move(
+                                    board.getSquare(selected).getPiece(),
+                                    new Position(selected.getRow(),
+                                            selected.getColumn()),
+                                    nextPosition));
                         }
                     }
                 }
@@ -204,6 +190,23 @@ public class Game implements Model {
         }
 
         return possibleMoves;
+    }
+
+    /**
+     * Checks if the position passed in parameter can be a possible
+     *
+     * A move is possible if the destination is in the board and is empty, and
+     * the player does not own the destination, and the square is of type LAND
+     *
+     * @param position the position to check
+     * @return {@code true} if the position can be a possible move
+     */
+    public boolean canBeNextMove(Position position) {
+
+        return board.isInside(position) && (board.isFree(position)
+                || !board.isMyOwn(position, current.getColor())
+                || board.getSquare(selected).getPiece()
+                        .canCross(board.getSquare(position)));
     }
 
     /**
