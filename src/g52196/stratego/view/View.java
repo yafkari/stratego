@@ -101,26 +101,39 @@ public class View {
             for (Square column : squares[i]) {
                 if (column.isFree()) {
                     if (column.isLand()) {
-                        System.out.print("| " + ANSI_GREEN_BACKGROUND + "__" + ANSI_RESET + " |");
+                        System.out.print("| " + ANSI_GREEN_BACKGROUND + "__" + 
+                                ANSI_RESET + " |");
                     } else {
-                        System.out.print("| " + ANSI_CYAN_BACKGROUND + "__" + ANSI_RESET + " |");
+                        System.out.print("| " + ANSI_CYAN_BACKGROUND + "__" + 
+                                ANSI_RESET + " |");
                     }
                 } else {
-                    if (column.getPiece().getColor() == currentColor) {
-                        if (column.getPiece().getColor() == PlayerColor.BLUE) {
-                            System.out.print("| "
-                                    + ANSI_GREEN_BACKGROUND + ANSI_BLUE + column + ANSI_RESET + " |");
-                        } else {
-                            System.out.print("| "
-                                    + ANSI_GREEN_BACKGROUND + ANSI_RED + column + ANSI_RESET + " |");
-                        }
+                    if (column.getPiece() == null) {
+                        System.out.print("| "
+                                + ANSI_GREEN_BACKGROUND + ANSI_BLUE + "  " + 
+                                ANSI_RESET + " |");
                     } else {
-                        if (column.getPiece().getColor() == PlayerColor.BLUE) {
-                            System.out.print("| "
-                                    + ANSI_GREEN_BACKGROUND + ANSI_BLUE + "??" + ANSI_RESET + " |");
+
+                        if (column.getPiece().getColor() == currentColor) {
+                            if (column.getPiece().getColor() == PlayerColor.BLUE) {
+                                System.out.print("| "
+                                        + ANSI_GREEN_BACKGROUND + ANSI_BLUE + 
+                                        column + ANSI_RESET + " |");
+                            } else {
+                                System.out.print("| "
+                                        + ANSI_GREEN_BACKGROUND + ANSI_RED + 
+                                        column + ANSI_RESET + " |");
+                            }
                         } else {
-                            System.out.print("| "
-                                    + ANSI_GREEN_BACKGROUND + ANSI_RED + "??" + ANSI_RESET + " |");
+                            if (column.getPiece().getColor() == PlayerColor.BLUE) {
+                                System.out.print("| "
+                                        + ANSI_GREEN_BACKGROUND + ANSI_BLUE 
+                                        + "??" + ANSI_RESET + " |");
+                            } else {
+                                System.out.print("| "
+                                        + ANSI_GREEN_BACKGROUND + ANSI_RED 
+                                        + "??" + ANSI_RESET + " |");
+                            }
                         }
                     }
                 }
