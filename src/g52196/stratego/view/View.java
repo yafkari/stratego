@@ -140,7 +140,7 @@ public class View {
         for (int i = 0; i < size - 1; i++) {
             System.out.print("| 0" + i + " |");
         }
-        System.out.println("\n ================================");
+        System.out.println("\n ======================================");
     }
 
     /**

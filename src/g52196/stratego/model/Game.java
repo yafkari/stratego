@@ -2,13 +2,7 @@ package g52196.stratego.model;
 
 import static g52196.stratego.model.PlayerColor.BLUE;
 import static g52196.stratego.model.PlayerColor.RED;
-import g52196.stratego.model.pieces.Bomb;
-import g52196.stratego.model.pieces.Flag;
-import g52196.stratego.model.pieces.General;
-import g52196.stratego.model.pieces.Marshal;
-import g52196.stratego.model.pieces.Miner;
-import g52196.stratego.model.pieces.Pathfinder;
-import g52196.stratego.model.pieces.Spy;
+import g52196.stratego.model.pieces.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -203,10 +197,10 @@ public class Game implements Model {
      */
     public boolean canBeNextMove(Position position) {
 
-        return board.isInside(position) && (board.isFree(position)
-                || !board.isMyOwn(position, current.getColor())
-                || board.getSquare(selected).getPiece()
-                        .canCross(board.getSquare(position)));
+        return board.isInside(position) && board.getSquare(selected).getPiece()
+                .canCross(board.getSquare(position))
+                && (board.isFree(position)
+                || !board.isMyOwn(position, current.getColor()));
     }
 
     /**
