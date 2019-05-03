@@ -108,45 +108,50 @@ public class View {
 
     public void displaySquare(Square square, PlayerColor color) {
         if (square.isFree()) {
-                    if (square.isLand()) {
-                        System.out.print("| " + ANSI_GREEN_BACKGROUND + "__" + 
-                                ANSI_RESET + " |");
-                    } else {
-                        System.out.print("| " + ANSI_CYAN_BACKGROUND + "__" + 
-                                ANSI_RESET + " |");
-                    }
-                } else {
-                    if (square.getPiece() == null) {
-                        System.out.print("| "
-                                + ANSI_GREEN_BACKGROUND + ANSI_BLUE + "  " + 
-                                ANSI_RESET + " |");
-                    } else {
+            if (square.isLand()) {
+                System.out.print("| " + ANSI_GREEN_BACKGROUND + "  "
+                        + ANSI_RESET + " |");
+            } else {
+                System.out.print("| " + ANSI_CYAN_BACKGROUND + "  "
+                        + ANSI_RESET + " |");
+            }
+        } else {
+            if (square.getPiece().getColor() == color) {
+                System.out.print("| " + ANSI_GREEN_BACKGROUND
+                        + (square.getPiece().getColor() == PlayerColor.BLUE
+                        ? ANSI_BLUE : ANSI_RED)
+                        + getSquareName(square)
+                        + ANSI_RESET + " |");
+            } else {
+                System.out.print("| " + ANSI_GREEN_BACKGROUND
+                        + (square.getPiece().getColor() == PlayerColor.BLUE
+                        ? ANSI_BLUE : ANSI_RED) + "??" + ANSI_RESET + " |");
 
-                        if (square.getPiece().getColor() == color) {
-                            if (square.getPiece().getColor() == PlayerColor.BLUE) {
-                                System.out.print("| "
-                                        + ANSI_GREEN_BACKGROUND + ANSI_BLUE + 
-                                        square + ANSI_RESET + " |");
-                            } else {
-                                System.out.print("| "
-                                        + ANSI_GREEN_BACKGROUND + ANSI_RED + 
-                                        square + ANSI_RESET + " |");
-                            }
-                        } else {
-                            if (square.getPiece().getColor() == PlayerColor.BLUE) {
-                                System.out.print("| "
-                                        + ANSI_GREEN_BACKGROUND + ANSI_BLUE 
-                                        + "??" + ANSI_RESET + " |");
-                            } else {
-                                System.out.print("| "
-                                        + ANSI_GREEN_BACKGROUND + ANSI_RED 
-                                        + "??" + ANSI_RESET + " |");
-                            }
-                        }
-                    }
-                }
+            }
+        }
     }
-    
+
+    private String getSquareName(Square square) {
+        switch (square.getPiece().getRank()) {
+            case 0:
+                return "FL";
+            case 1:
+                return "SP";
+            case 2:
+                return "PA";
+            case 3:
+                return "MN";
+            case 9:
+                return "GE";
+            case 10:
+                return "MA";
+            case 11:
+                return "BO";
+            default:
+                return "PE";
+        }
+    }
+
     /**
      * Displays the header of the board
      *

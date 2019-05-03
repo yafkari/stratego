@@ -142,7 +142,7 @@ public class Game implements Model {
         if (selected == null) {
             throw new NullPointerException("The selected piece is empty");
         }
-        return board.getSquare(selected).getPiece();
+        return board.getPiece(selected);
     }
 
     /**
@@ -159,19 +159,19 @@ public class Game implements Model {
 
         List<Move> possibleMoves = new ArrayList<>();
 
-        if (board.getSquare(selected).getPiece().getNbSteps() != 0) {
+        if (board.getPiece(selected).getNbSteps() != 0) {
             for (Direction direction : Direction.values()) {
                 Position nextPosition = selected.next(direction);
                 if (canBeNextMove(nextPosition)) {
                     possibleMoves.add(new Move(
-                            board.getSquare(selected).getPiece(),
-                            selected, nextPosition));
+                            board.getSquare(selected).getPiece(), selected,
+                            nextPosition));
 
-                    if (board.getSquare(selected).getPiece().getNbSteps() == 2) {
+                    if (board.getPiece(selected).getNbSteps() == 2) {
                         nextPosition = nextPosition.next(direction);
                         if (canBeNextMove(nextPosition)) {
                             possibleMoves.add(new Move(
-                                    board.getSquare(selected).getPiece(),
+                                    board.getPiece(selected),
                                     selected, nextPosition));
                         }
                     }
@@ -193,7 +193,7 @@ public class Game implements Model {
      */
     public boolean canBeNextMove(Position position) {
 
-        return board.isInside(position) && board.getSquare(selected).getPiece()
+        return board.isInside(position) && board.getPiece(selected)
                 .canCross(board.getSquare(position))
                 && (board.isFree(position)
                 || !board.isMyOwn(position, current.getColor()));
@@ -231,11 +231,11 @@ public class Game implements Model {
 
         Position end = move.getEnd();
         Piece piece = move.getPiece();
-        Piece targetPiece = board.getSquare(end).getPiece();
+        Piece targetPiece = board.getPiece(end);
 
         if (board.isInside(end)
-                || board.getSquare(move.getStart()).getPiece() == piece
-                || board.getSquare(end).getPiece().getColor() != piece.getColor()) {
+                || board.getPiece(move.getStart()) == piece
+                || board.getPiece(end).getColor() != piece.getColor()) {
 
             board.remove(move.getStart());
             current.remove(piece);
