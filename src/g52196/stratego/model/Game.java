@@ -161,22 +161,18 @@ public class Game implements Model {
 
         if (board.getSquare(selected).getPiece().getNbSteps() != 0) {
             for (Direction direction : Direction.values()) {
-                Position nextPosition = selected.next(direction);   // pass nbSteps to next ?
+                Position nextPosition = selected.next(direction);
                 if (canBeNextMove(nextPosition)) {
                     possibleMoves.add(new Move(
                             board.getSquare(selected).getPiece(),
-                            new Position(selected.getRow(),
-                                    selected.getColumn()),
-                            nextPosition));
+                            selected, nextPosition));
 
                     if (board.getSquare(selected).getPiece().getNbSteps() == 2) {
                         nextPosition = nextPosition.next(direction);
                         if (canBeNextMove(nextPosition)) {
                             possibleMoves.add(new Move(
                                     board.getSquare(selected).getPiece(),
-                                    new Position(selected.getRow(),
-                                            selected.getColumn()),
-                                    nextPosition));
+                                    selected, nextPosition));
                         }
                     }
                 }

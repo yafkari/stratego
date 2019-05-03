@@ -48,6 +48,9 @@ public interface Model {
      *
      * @param row the row where the piece is located
      * @param column the column where the piece is located
+     * @throws IllegalArgumentException if the position is not on the board
+     * @throws IllegalArgumentException if the square at the position is empty
+     * @throws IllegalArgumentException if the square is not owned by the player
      */
     void select(int row, int column);
 

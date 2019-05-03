@@ -1,5 +1,7 @@
 package g52196.stratego.model;
 
+import java.util.Objects;
+
 /**
  * @author 52196
  *
@@ -55,5 +57,29 @@ public class Move {
      */
     public Position getEnd() {
         return end;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Move other = (Move) obj;
+        if (!Objects.equals(this.piece, other.piece)) {
+            return false;
+        }
+        if (!Objects.equals(this.start, other.start)) {
+            return false;
+        }
+        if (!Objects.equals(this.end, other.end)) {
+            return false;
+        }
+        return true;
     }
 }

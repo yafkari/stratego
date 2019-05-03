@@ -164,8 +164,15 @@ public class GameTest {
         Game instance = new Game();
         instance.initialize();
         instance.select(3, 2);
+
         List<Move> result = instance.getMoves();
-        assertEquals(4, result.size());
+
+        assertEquals(3, result.size());
+
+        assertEquals(result.get(0).getStart(), new Position(3, 2));
+        assertEquals(result.get(0).getEnd(), new Position(4, 2));
+        assertEquals(result.get(1).getEnd(), new Position(3, 1));
+        assertEquals(result.get(2).getEnd(), new Position(3, 3));
     }
 
     @Test
@@ -250,12 +257,12 @@ public class GameTest {
         instance.initialize();
 
         instance.select(3, 2);
-        instance.apply(instance.getMoves().get(0));
+        instance.apply(instance.getMoves().get(1));
 
         Square[][] result = instance.getBoard();
         Board board = new Board();
         board.getSquares()[0][1].put(new Flag(RED));
-        board.getSquares()[2][2].put(new General(RED));
+        board.getSquares()[3][1].put(new General(RED));
         board.getSquares()[4][2].put(new Flag(BLUE));
         board.getSquares()[4][1].put(new General(BLUE));
         board.getSquares()[1][0].put(new Miner(BLUE));
@@ -274,7 +281,8 @@ public class GameTest {
         instance.initialize();
 
         instance.select(3, 2);
-        instance.apply(instance.getMoves().get(1));
+
+        instance.apply(instance.getMoves().get(0));
 
         Square[][] result = instance.getBoard();
         Board board = new Board();
@@ -296,8 +304,7 @@ public class GameTest {
         Game instance = new Game();
         instance.initialize();
 
-        instance.select(3, 2);
-        instance.apply(instance.getMoves().get(1));
+        instance.swapPlayers();
 
         instance.select(1, 0);
         instance.apply(instance.getMoves().get(0));
@@ -305,7 +312,9 @@ public class GameTest {
         Square[][] result = instance.getBoard();
         Board board = new Board();
         board.getSquares()[0][1].put(new Flag(RED));
-        board.getSquares()[4][2].put(new General(RED));
+        board.getSquares()[4][2].put(new Flag(BLUE));
+
+        board.getSquares()[3][2].put(new General(RED));
         board.getSquares()[4][1].put(new General(BLUE));
         board.getSquares()[0][0].put(new Miner(BLUE));
         board.getSquares()[3][4].put(new Spy(BLUE));
@@ -347,7 +356,7 @@ public class GameTest {
         instance.initialize();
 
         instance.select(3, 2);
-        instance.apply(instance.getMoves().get(2));
+        instance.apply(instance.getMoves().get(1));
 
         instance.select(4, 1);
         instance.apply(instance.getMoves().get(0));
@@ -389,27 +398,27 @@ public class GameTest {
         Game instance = new Game();
         instance.initialize();
         instance.select(3, 2);
-        
+
         assertTrue(instance.canBeNextMove(new Position(3, 3)));
     }
-    
+
     @Test
     public void testCanBeNextMoveWhenTrueWithTwoSteps() {
         System.out.println("testCanBeNextMoveWhenTrueWithTwoSteps");
         Game instance = new Game();
         instance.initialize();
         instance.select(4, 0);
-        
+
         assertTrue(instance.canBeNextMove(new Position(2, 0)));
     }
-    
+
     @Test
     public void testCanBeNextMoveWhenFalse() {
         System.out.println("testCanBeNextMoveWhenFalse");
         Game instance = new Game();
         instance.initialize();
-        instance.select(0, 0);
-        
-        assertTrue(instance.canBeNextMove(new Position(0, 1)));
+        instance.select(4, 0);
+
+        assertFalse(instance.canBeNextMove(new Position(4, -1)));
     }
 }

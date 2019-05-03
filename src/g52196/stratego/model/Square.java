@@ -66,15 +66,13 @@ public class Square {
      * false
      */
     public boolean isMyOwn(PlayerColor color) {
-        if (!isFree()) {
-            return getPiece().getColor() == color;
-        }
-        return false;
+        
+        return !isFree() && getPiece().getColor() == color;
     }
-    
+
     /**
      * Returns if the square is of land
-     * 
+     *
      * @return if the square is of land
      */
     public boolean isLand() {
