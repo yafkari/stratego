@@ -110,10 +110,9 @@ public class Board {
      * @return {@code true} if the square is owned by the given color
      */
     public boolean isMyOwn(Position position, PlayerColor color) {
-        if (!getSquare(position).isFree()) {
-            return getSquare(position).getPiece().getColor() == color;
-        }
-        return false;
+
+        return getSquare(position).isMyOwn(color);
+
     }
 
     /**
