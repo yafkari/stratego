@@ -66,7 +66,7 @@ public class Square {
      * false
      */
     public boolean isMyOwn(PlayerColor color) {
-        
+
         return !isFree() && getPiece().getColor() == color;
     }
 

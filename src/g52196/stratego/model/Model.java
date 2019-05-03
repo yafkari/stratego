@@ -56,11 +56,13 @@ public interface Model {
 
     /**
      * @return the selected piece
+     * @throws NullPointerException if the selected piece is empty
      */
     Piece getSelected();
 
     /**
      * @return the list of possible moves
+     * @throws NullPointerException if the selected piece is null
      */
     List<Move> getMoves();
 
@@ -68,6 +70,8 @@ public interface Model {
      * Allows the user to apply a movement to a piece
      *
      * @param move the movement to be applied
+     * @throws NullPointerException if the move passed in parameter is null
+     * @throws IllegalArgumentException if the move is not valid
      */
     void apply(Move move);
 
@@ -82,6 +86,7 @@ public interface Model {
      * Returns the list of winners
      *
      * @return the list of winners
+     * @throws IllegalStateException if the game is not over
      */
     List<Player> getWinners();
 }
