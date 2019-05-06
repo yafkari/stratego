@@ -291,15 +291,16 @@ public class Game implements Model {
      */
     public boolean hasMoves(Player player) {
         Position tmp = selected;
+        
         for (Position position : board.getTakenSquare(player)) {
             selected = position;
-            if (getMoves().size() < 0) {
+            if (getMoves().size() > 0) {
                 selected = tmp;
-                return false;
+                return true;
             }
         }
         selected = tmp;
-        return true;
+        return false;
     }
 
     /**

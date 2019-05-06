@@ -16,7 +16,7 @@ public class Marshal extends Piece {
      * @param color the color of the marshal
      */
     public Marshal(PlayerColor color) {
-        super(11, color);
+        super(10, color);
     }
 
     /**
