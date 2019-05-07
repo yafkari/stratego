@@ -234,29 +234,26 @@ public class Game implements Model {
         Piece targetPiece = board.getPiece(end);
 
         if (board.isInside(end)
-                || board.getPiece(move.getStart()) == piece
-                || board.getPiece(end).getColor() != piece.getColor()) {
-
-            board.remove(move.getStart());
-            current.remove(piece);
+                && (board.getPiece(move.getStart()) == piece
+                || board.getPiece(end).getColor() != piece.getColor())) {
 
             if (board.isFree(end)) {
+                board.remove(move.getStart());
                 board.put(piece, end);
-                current.addPiece(piece);
+            } else if (piece.hasSameRank(targetPiece)) {
+                board.remove(end);
+                board.remove(move.getStart());
+
+                current.remove(piece);
+                opponent.remove(targetPiece);
+            } else if (piece.isStronger(targetPiece)) {
+                board.remove(move.getStart());
+                board.remove(end);
+                board.put(piece, end);
+                opponent.remove(targetPiece);
             } else {
-                if (piece.isStronger(targetPiece)) {
-                    board.remove(end);
-                    board.put(piece, end);
-
-                    opponent.remove(targetPiece);
-                } else if (piece.hasSameRank(targetPiece)) {
-                    board.remove(end);
-                    board.remove(move.getStart());
-
-                    current.remove(piece);
-                    opponent.remove(targetPiece);
-
-                }
+                board.remove(move.getStart());
+                current.remove(piece);
             }
         }
 
@@ -291,7 +288,7 @@ public class Game implements Model {
      */
     public boolean hasMoves(Player player) {
         Position tmp = selected;
-        
+
         for (Position position : board.getTakenSquare(player)) {
             selected = position;
             if (getMoves().size() > 0) {
