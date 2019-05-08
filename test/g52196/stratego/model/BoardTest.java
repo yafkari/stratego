@@ -266,7 +266,6 @@ public class BoardTest {
     public void testIsFreeWhenIsNotOnBoard() {
         System.out.println("testIsFreeIsNotOnBoard");
         Board instance = new Board();
-        instance.put(new Piece(2, PlayerColor.RED), new Position(22, 1));
         instance.isFree(new Position(22, 1));
     }
 
@@ -350,5 +349,21 @@ public class BoardTest {
         int expResult = 0;
         int result = instance.getTakenSquare(new Player(PlayerColor.RED)).size();
         assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testGetPiece() {
+        System.out.println("testGetPiece");
+        Board instance = new Board();
+        instance.put(new Piece(0, PlayerColor.RED), new Position(0,0));
+       
+        assertEquals(instance.getPiece(new Position(0,0)), new Piece(0, PlayerColor.RED));
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetPieceWhenIllegalArgumentException() {
+        System.out.println("testGetPieceWhenIllegalArgumentException");
+        Board instance = new Board();
+        instance.getPiece(new Position(-1,0));
     }
 }
