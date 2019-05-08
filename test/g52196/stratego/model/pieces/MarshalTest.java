@@ -14,15 +14,21 @@ public class MarshalTest {
         General general = new General(BLUE);
         Bomb bomb = new Bomb(BLUE);
         Miner miner = new Miner(BLUE);
-        Spy spy = new Spy(BLUE);
         Pathfinder pathFinder = new Pathfinder(BLUE);
 
         assertTrue(instance.isStronger(flag));
         assertTrue(instance.isStronger(general));
         assertTrue(instance.isStronger(bomb));
         assertTrue(instance.isStronger(miner));
-        assertTrue(instance.isStronger(spy));
         assertTrue(instance.isStronger(pathFinder));
-
+    }
+    
+    @Test
+    public void testIsNotStronger() {
+        System.out.println("testIsNotStronger");
+        Marshal instance = new Marshal(RED);
+        Spy spy = new Spy(BLUE);
+        
+        assertFalse(instance.isStronger(spy));
     }
 }
