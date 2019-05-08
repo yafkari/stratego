@@ -26,7 +26,7 @@ public class Marshal extends Piece {
      * @return {@code true}
      */
     public boolean isStronger(Piece other) {
-        return true;
+        return other.getRank() != 1;
     }
 
     @Override
