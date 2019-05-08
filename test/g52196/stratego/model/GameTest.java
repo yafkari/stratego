@@ -225,7 +225,7 @@ public class GameTest {
     }
 
     @Test
-    public void testHasMoves() {
+    public void testHasMovesWhenTrue() {
         System.out.println("testHasMoves");
         Game instance = new Game();
         instance.initialize();
@@ -242,14 +242,24 @@ public class GameTest {
     }
 
     @Test
-    public void testGetWinnersWhenOnePlayerWin() {
-        System.out.println("testGetWinnersWhenOnePlayerWin");
+    public void testGetWinnersWhenBLUEPlayerWins() {
+        System.out.println("testGetWinnersWhenBLUEPlayerWins");
         Game instance = new Game();
         instance.initialize();
         instance.getCurrent().remove(new Flag(PlayerColor.RED));
         assertTrue(PlayerColor.BLUE == instance.getWinners().get(0).getColor());
     }
-
+    
+    @Test
+    public void testGetWinnersWhenREDPlayerWins() {
+        System.out.println("testGetWinnersWhenREDPlayerWins");
+        Game instance = new Game();
+        instance.initialize();
+        instance.swapPlayers();
+        instance.getCurrent().remove(new Flag(PlayerColor.BLUE));
+        assertTrue(PlayerColor.RED == instance.getWinners().get(0).getColor());
+    }
+    
     @Test
     public void testApplyWhenEndIsEmpty() {
         System.out.println("testApplyWhenEndIsEmpty");
