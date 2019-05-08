@@ -299,14 +299,25 @@ public class BoardTest {
     }
 
     @Test
-    public void testRemove() {
-        System.out.println("testRemove");
+    public void testRemoveWhenLand() {
+        System.out.println("testRemoveWhenLand");
         Board instance = new Board();
         instance.put(new Piece(1, PlayerColor.RED), new Position(1, 1));
         instance.remove(new Position(1, 1));
         Square result = instance.getSquare(new Position(1, 1));
         
         assertEquals(new Square(SquareType.LAND), result);
+    }
+    
+    @Test
+    public void testRemoveWhenWater() {
+        System.out.println("testRemoveWhenWater");
+        Board instance = new Board();
+        instance.put(new Piece(1, PlayerColor.RED), new Position(2, 3));
+        instance.remove(new Position(2, 3));
+        Square result = instance.getSquare(new Position(2, 3));
+        
+        assertEquals(new Square(SquareType.WATER), result);
     }
 
     @Test
