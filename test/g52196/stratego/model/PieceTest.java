@@ -37,10 +37,8 @@ public class PieceTest {
     public void testConstructPieceWhenNbStepsIsZero() {
         System.out.println("testConstructPieceWhenNbStepsIsZero");
         Piece instance = new Flag(BLUE);
-        Piece instance2 = new Bomb(BLUE);
 
         assertEquals(0, instance.getNbSteps());
-        assertEquals(0, instance2.getNbSteps());
     }
 
     @Test
@@ -55,6 +53,12 @@ public class PieceTest {
         System.out.println("testConstructPieceWhenNbStepsIsTwo");
         Piece instance = new Piece(1, 2, BLUE);
         assertEquals(2, instance.getNbSteps());
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructPieceWhenNbStepsIsNegative() {
+        System.out.println("testConstructPieceWhenNbStepsIsNegative");
+        Piece instance = new Piece(0, -1, RED);
     }
 
     @Test
