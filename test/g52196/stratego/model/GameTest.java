@@ -47,7 +47,7 @@ public class GameTest {
 
     @Test
     public void testInitialize() {
-        System.out.println("initialize");
+        System.out.println("testInitialize");
         Game instance = new Game();
         instance.initialize();
         Square[][] result = instance.getBoard();
