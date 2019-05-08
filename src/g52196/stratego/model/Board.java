@@ -119,11 +119,11 @@ public class Board {
      * 
      * @param position the position of the piece
      * @return the piece at the position passed in parameter
-     * @throws NullPointerException if the position is not in the board
+     * @throws IllegalArgumentException if the position is not in the board
      */
     public Piece getPiece(Position position) {
         if (!isInside(position)) {
-            throw new NullPointerException("The position is not in the board");
+            throw new IllegalArgumentException("The position is not in the board");
         }
         return getSquare(position).getPiece();
     }
