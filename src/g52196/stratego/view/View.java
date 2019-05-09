@@ -174,11 +174,11 @@ public class View {
         info("GAME OVER");
 
         if (winners != null) {
-            info("Congratulations to :");
+            info("Congratulations");
             for (Player player : winners) {
                 System.out.println("The "
                         + player.getColor().name().toLowerCase()
-                        + " player win !");
+                        + " player wins !");
             }
         }
     }
