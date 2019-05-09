@@ -164,16 +164,20 @@ public class Game implements Model {
                 Position nextPosition = selected.next(direction);
                 if (canBeNextMove(nextPosition)) {
                     possibleMoves.add(new Move(
-                            board.getSquare(selected).getPiece(), selected,
+                            board.getPiece(selected), selected,
                             nextPosition));
 
                     if (board.getPiece(selected).getNbSteps() == 2) {
-                        nextPosition = nextPosition.next(direction);
-                        if (canBeNextMove(nextPosition)) {
-                            possibleMoves.add(new Move(
-                                    board.getPiece(selected),
-                                    selected, nextPosition));
+                        if (board.getSquare(nextPosition).isFree()) {
+                            nextPosition = nextPosition.next(direction);
+                            if (canBeNextMove(nextPosition)) {
+
+                                possibleMoves.add(new Move(
+                                        board.getPiece(selected),
+                                        selected, nextPosition));
+                            }
                         }
+
                     }
                 }
             }
