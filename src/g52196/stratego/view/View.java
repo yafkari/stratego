@@ -5,6 +5,8 @@ import g52196.stratego.model.Piece;
 import g52196.stratego.model.Player;
 import g52196.stratego.model.PlayerColor;
 import g52196.stratego.model.Square;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -120,7 +122,7 @@ public class View {
                 System.out.print("| " + ANSI_GREEN_BACKGROUND
                         + (square.getPiece().getColor() == PlayerColor.BLUE
                         ? ANSI_BLUE : ANSI_RED)
-                        + getSquareName(square)
+                        + getSquareName(square.getPiece().getRank())
                         + ANSI_RESET + " |");
             } else {
                 System.out.print("| " + ANSI_GREEN_BACKGROUND
@@ -131,25 +133,17 @@ public class View {
         }
     }
 
-    private String getSquareName(Square square) {
-        switch (square.getPiece().getRank()) {
-            case 0:
-                return "FL";
-            case 1:
-                return "SP";
-            case 2:
-                return "PA";
-            case 3:
-                return "DE";
-            case 9:
-                return "GE";
-            case 10:
-                return "MA";
-            case 11:
-                return "BO";
-            default:
-                return "PE";
-        }
+    /**
+     * Returns the name of a piece by looking to the rank
+     *
+     * @param rank the rank of the piece
+     * @return the name of the piece with the rank passed in parameter
+     */
+    private String getSquareName(int rank) {
+        String[] squareNames = {"FL", "SP", "PA", "DE", "PE", "PE", "PE", "PE",
+            "PE", "GE", "MA", "BO"};
+
+        return squareNames[rank];
     }
 
     /**

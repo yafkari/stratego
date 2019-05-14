@@ -19,16 +19,6 @@ public class Marshal extends Piece {
         super(10, color);
     }
 
-    /**
-     * Returns {@code true} because the marshal is stronger than every pieces
-     *
-     * @param other the piece to be compared to the current piece
-     * @return {@code true}
-     */
-    public boolean isStronger(Piece other) {
-        return other.getRank() != 1;
-    }
-
     @Override
     public String toString() {
         return "MA";
